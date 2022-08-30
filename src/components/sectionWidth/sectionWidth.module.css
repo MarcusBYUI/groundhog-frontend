@@ -1,0 +1,11 @@
+.sectionwidth {
+  width: 90%;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 1080px) {
+  .sectionwidth {
+    max-width: 1350px;
+    margin: 0 auto;
+  }
+}
