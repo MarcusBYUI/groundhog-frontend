@@ -1,0 +1,37 @@
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.heroImage {
+  top: 30px;
+  right: 0;
+  position: fixed;
+  background: url(../../../assets/hero.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 745px;
+  height: 700px;
+}
+
+.heroTexts {
+  margin-top: 35px;
+}
+
+.heroTexts h1 {
+  font-weight: 700;
+  font-size: 65px;
+  line-height: 69px;
+  max-width: 313px;
+  color: #cf754a;
+}
+
+.heroTexts p {
+  max-width: 475px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+
+  color: #d89b5a;
+}

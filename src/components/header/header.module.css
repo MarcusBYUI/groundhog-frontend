@@ -1,0 +1,46 @@
+.headerGrid {
+  margin: 15px 0;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  align-items: center;
+}
+
+.logoImage img {
+  width: 80px;
+  cursor: pointer;
+}
+
+.headerGrid nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-self: end;
+}
+
+.headerGrid nav > div {
+  display: none;
+}
+
+.headerGrid nav > div ul {
+  display: flex;
+}
+
+.headerGrid nav > div ul li {
+  margin-right: 80px;
+  list-style: none;
+}
+
+.headerGrid a {
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+@media only screen and (min-width: 1080px) {
+  .headerGrid nav > div {
+    display: block;
+  }
+  .headerGrid nav {
+    justify-self: auto;
+  }
+}

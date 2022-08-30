@@ -9,7 +9,9 @@ const Header = () => {
       <SectionWidth>
         <div className={styles.headerGrid}>
           <div className={styles.logoImage}>
-            <img src={require("../../assets/logo.png")} alt="logo" />
+            <Link to="/">
+              <img src={require("../../assets/logo.png")} alt="logo" />
+            </Link>
           </div>
           <nav>
             <div>
