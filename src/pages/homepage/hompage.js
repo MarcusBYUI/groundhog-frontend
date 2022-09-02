@@ -1,14 +1,16 @@
 import React from "react";
 import Header from "../../components/header/header";
 import Hero from "./hero/hero";
-import MinSection from "./minSection/minSection";
+import MintSection from "./mintSection/mintSection";
+import StakingSection from "./stakingSection/stakingSection";
 
 const Hompage = () => {
   return (
     <>
       <Header />
       <Hero />
-      <MinSection />
+      <MintSection />
+      <StakingSection />
     </>
   );
 };

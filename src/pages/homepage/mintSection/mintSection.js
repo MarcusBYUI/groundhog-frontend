@@ -3,8 +3,8 @@ import React from "react";
 import Button from "../../../components/button/button";
 import ListItems from "../../../components/listItems/listItems";
 import SectionWidth from "../../../components/sectionWidth/sectionWidth";
-import styles from "./minSection.module.css";
-const MinSection = () => {
+import styles from "./mintSection.module.css";
+const MintSection = () => {
   return (
     <section className={styles.mintSection}>
       <SectionWidth>
@@ -38,4 +38,4 @@ const MinSection = () => {
   );
 };
 
-export default MinSection;
+export default MintSection;

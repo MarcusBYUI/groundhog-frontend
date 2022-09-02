@@ -1,7 +1,7 @@
 .mintSection {
   position: relative;
-
-  background: url(../../../assets//mintsectionbg.png);
+  border-radius: 10px;
+  background: url(../../../assets/mintsectionbg.png);
   height: 658px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -98,9 +98,5 @@
     grid-column: 2;
     margin-top: 90px;
     width: 85%;
-  }
-
-  .mintSectionText ul {
-    margin: 45px 0;
   }
 }
