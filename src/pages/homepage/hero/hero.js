@@ -38,10 +38,10 @@ const Hero = () => {
             </div>
             <div className={styles.buttonGrid}>
               <Button
-                data={{ name: "Mint Now", action: "mint", style: "white" }}
+                data={{ name: "Mint Now", action: "mint", style: "trans" }}
               />
               <Button
-                data={{ name: "Stake 6%", action: "stake", style: "white" }}
+                data={{ name: "Stake 6%", action: "stake", style: "trans" }}
               />
             </div>
           </div>

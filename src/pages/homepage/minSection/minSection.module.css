@@ -1,0 +1,106 @@
+.mintSection {
+  position: relative;
+
+  background: url(../../../assets//mintsectionbg.png);
+  height: 658px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.MintSectionGrid {
+  display: block;
+}
+
+.wheelingImage {
+  bottom: 5px;
+  left: -15px;
+  position: absolute;
+  background: url(../../../assets/GopherBarrel.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 150px;
+}
+
+.mintSectionText {
+  padding-top: 50px;
+  width: inherit;
+}
+
+.mintHeaderGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: baseline;
+  width: min-content;
+}
+
+.mintHeaderGrid p {
+  padding: 0;
+  margin: 0;
+}
+
+.mintHeaderGrid p:first-child {
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 38px;
+  color: #d89b5a;
+}
+
+.mintHeaderGrid p:last-child {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 100px;
+  color: #cf754a;
+}
+
+.mintSectionText > p {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 23px;
+  color: #745330;
+  text-align: justify;
+}
+
+.mintSectionText ul {
+  margin: 45px 0;
+  padding: 0;
+}
+
+.buttonContainer {
+  display: flex;
+  max-width: 90%;
+  justify-content: flex-end;
+}
+
+@media only screen and (min-width: 650px) {
+  .wheelingImage {
+    width: 300px;
+    height: 250px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .MintSectionGrid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+  }
+  .wheelingImage {
+    top: 60px;
+    left: -15px;
+    width: 700px;
+    height: 570px;
+  }
+
+  .mintSectionText {
+    grid-column: 2;
+    margin-top: 90px;
+    width: 85%;
+  }
+
+  .mintSectionText ul {
+    margin: 45px 0;
+  }
+}
