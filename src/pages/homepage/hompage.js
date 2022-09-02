@@ -1,8 +1,10 @@
 import React from "react";
+
 import Header from "../../components/header/header";
 import Hero from "./hero/hero";
 import MintSection from "./mintSection/mintSection";
 import StakingSection from "./stakingSection/stakingSection";
+import Footer from "../../components/footer/footer"
 
 const Hompage = () => {
   return (
@@ -11,6 +13,7 @@ const Hompage = () => {
       <Hero />
       <MintSection />
       <StakingSection />
+      <Footer />
     </>
   );
 };
