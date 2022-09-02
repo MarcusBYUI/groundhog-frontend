@@ -1,32 +1,37 @@
 .heroGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  padding-bottom: 30px;
 }
 
 .heroImage {
   top: 30px;
   right: 0;
-  position: fixed;
+  position: absolute;
   background: url(../../../assets/hero.png);
-  background-position: center;
+  background-position: left;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 745px;
+  width: 145px;
   height: 700px;
+  z-index: 0;
 }
 
 .heroTexts {
-  margin-top: 35px;
+  margin-top: 5px;
+  z-index: 1;
 }
 
 .heroTexts h1 {
   font-weight: 700;
-  font-size: 65px;
+  font-size: 55px;
   line-height: 69px;
   max-width: 313px;
   color: #cf754a;
 }
-
+.heroTexts > p {
+  width: 80%;
+}
 .heroTexts p {
   max-width: 475px;
   font-weight: 500;
@@ -34,4 +39,44 @@
   line-height: 23px;
 
   color: #d89b5a;
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+  width: max-content;
+  gap: 20px;
+}
+
+.buttonGrid {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: max-content;
+  gap: 15px;
+}
+
+@media only screen and (min-width: 750px) {
+  .buttonGrid {
+    gap: 80px;
+  }
+
+  .heroTexts h1 {
+    font-size: 65px;
+  }
+
+  .heroTexts p {
+    width: auto;
+  }
+  .heroImage {
+    width: 345px;
+  }
+}
+
+@media only screen and (min-width: 1180px) {
+  .heroImage {
+    background-position: center;
+    width: 745px;
+  }
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../../../components/button/button";
 import SectionWidth from "../../../components/sectionWidth/sectionWidth";
 
 import styles from "./hero.module.css";
@@ -13,8 +14,36 @@ const Hero = () => {
               Mint GroundHog NFTs Mint GroundHog NFTs Mint GroundHog NFTsMint
               GroundHog NFTsMint GroundHog NFTsMint GroundHog NFTs
             </p>
-            <div className={styles.detailGrid}></div>
-            <div className={styles.buttonGrid}></div>
+            <div className={styles.detailGrid}>
+              <p>Mint GroundHog NFTs</p>
+              <lottie-player
+                src="https://lottie.host/4e515e4c-34f6-4fa4-9d1f-ef6539c0f86d/kC76FKZ4Ls.json"
+                background="transparent"
+                speed="1"
+                loop
+                style={{ width: "60px", height: "45px" }}
+                autoplay
+              ></lottie-player>
+            </div>
+            <div className={styles.detailGrid}>
+              <p>6% staking APY</p>
+              <lottie-player
+                src="https://lottie.host/4e515e4c-34f6-4fa4-9d1f-ef6539c0f86d/kC76FKZ4Ls.json"
+                background="transparent"
+                speed="1"
+                loop
+                style={{ width: "60px", height: "45px" }}
+                autoplay
+              ></lottie-player>
+            </div>
+            <div className={styles.buttonGrid}>
+              <Button
+                data={{ name: "Mint Now", action: "mint", style: "white" }}
+              />
+              <Button
+                data={{ name: "Stake 6%", action: "stake", style: "white" }}
+              />
+            </div>
           </div>
           <div className={styles.heroImage}></div>
           <div></div>
