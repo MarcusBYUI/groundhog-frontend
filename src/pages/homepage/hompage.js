@@ -4,7 +4,8 @@ import Header from "../../components/header/header";
 import Hero from "./hero/hero";
 import MintSection from "./mintSection/mintSection";
 import StakingSection from "./stakingSection/stakingSection";
-import Footer from "../../components/footer/footer"
+import Footer from "../../components/footer/footer";
+import Login from "../../components/login/login";
 
 const Hompage = () => {
   return (
@@ -14,6 +15,7 @@ const Hompage = () => {
       <MintSection />
       <StakingSection />
       <Footer />
+      <Login />
     </>
   );
 };
