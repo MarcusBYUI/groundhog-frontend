@@ -1,0 +1,28 @@
+.buttonContainer {
+  width: 90%;
+  margin: 10px auto 10px auto;
+  text-align: right;
+}
+
+.buttonContainer button {
+  background-color: transparent;
+  width: 137px;
+  height: 38px;
+
+  border: 2px solid #0bb1f7;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #0bb1f7;
+}
+
+.buttonContainer button:hover {
+  background-color: #0bb1f7;
+  color: white;
+}
+
+@media only screen and (min-width: 1080px) {
+  .buttonContainer {
+    max-width: 1120px;
+  }
+}

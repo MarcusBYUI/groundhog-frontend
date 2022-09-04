@@ -1,6 +1,6 @@
 import React from "react";
 import SectionWidth from "../sectionWidth/sectionWidth";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import styles from "./header.module.css";
 const Header = () => {
@@ -18,11 +18,24 @@ const Header = () => {
               <ul>
                 <li>
                   {" "}
-                  <Link to="/">Mint</Link>
+                  <NavLink
+                    style={({ isActive }) => ({
+                      color: isActive ? "#cf754a" : "",
+                    })}
+                    to="/mint"
+                  >
+                    Mint
+                  </NavLink>
                 </li>
                 <li>
-                  {" "}
-                  <Link to="/">Stake</Link>
+                  <NavLink
+                    style={({ isActive }) => ({
+                      color: isActive ? "#cf754a" : "",
+                    })}
+                    to="/stake"
+                  >
+                    Stake
+                  </NavLink>
                 </li>
               </ul>
             </div>
