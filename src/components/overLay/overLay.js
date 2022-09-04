@@ -1,8 +1,8 @@
 import React from "react";
 
 import styles from "./overLay.module.css";
-const OverLay = () => {
-  return <div className={styles.backdrop}></div>;
+const OverLay = ({ closeHandler }) => {
+  return <div onClick={closeHandler} className={styles.backdrop}></div>;
 };
 
 export default OverLay;

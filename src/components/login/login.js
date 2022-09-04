@@ -2,12 +2,18 @@ import React from "react";
 import OverLay from "../overLay/overLay";
 
 import styles from "./login.module.css";
+import { useDispatch } from "react-redux";
+import { authSliceActions } from "../../store/auth/auth";
 
 const Login = () => {
-  const handleBackdropCLick = () => {};
+  const dispatch = useDispatch();
+
+  const handleBackdropCLick = () => {
+    dispatch(authSliceActions.setLoginPop(false));
+  };
   return (
     <>
-      <OverLay />
+      <OverLay closeHandler={handleBackdropCLick} />
       <div className={styles.loginPop}>
         <i onClick={handleBackdropCLick} className="fa-solid fa-xmark"></i>
         <h2>GroundHog Login</h2>
