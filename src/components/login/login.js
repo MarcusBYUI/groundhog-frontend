@@ -11,6 +11,11 @@ const Login = () => {
   const handleBackdropCLick = () => {
     dispatch(authSliceActions.setLoginPop(false));
   };
+
+  const handleSignUpPop = () => {
+    dispatch(authSliceActions.setLoginPop(false));
+    dispatch(authSliceActions.SetSignupPop(true));
+  };
   return (
     <>
       <OverLay closeHandler={handleBackdropCLick} />
@@ -22,7 +27,7 @@ const Login = () => {
         <form>
           <label>
             Email Address
-            <input type="text" placeholder="example@gmail.com" required />
+            <input type="email" placeholder="example@gmail.com" required />
           </label>
           <label>
             Password
@@ -33,7 +38,7 @@ const Login = () => {
 
         <div>
           <span>Don’t have an account?</span>
-          <p>SignUp</p>
+          <p onClick={handleSignUpPop}>SignUp</p>
         </div>
       </div>
     </>

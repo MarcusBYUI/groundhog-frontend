@@ -1,6 +1,6 @@
 .loginPop {
   position: fixed;
-  top: 15%;
+  top: 7%;
   margin: 0 5px;
   width: -webkit-fill-available;
   padding: 35px 30px 50px 30px;
@@ -124,6 +124,7 @@
 
 @media only screen and (min-width: 545px) {
   .loginPop {
+    top: 1%;
     left: calc(50% - 220px);
     width: max-content;
     padding: 35px 60px 50px 60px;
