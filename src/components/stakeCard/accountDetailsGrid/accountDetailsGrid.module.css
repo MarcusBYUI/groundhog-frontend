@@ -1,0 +1,25 @@
+.accountDetailsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.accountDetailsGrid span {
+  justify-self: flex-end;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+
+  color: #cf754a;
+}
+
+.accountDetailsGrid p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 8px 0;
+  color: #cf754a;
+}

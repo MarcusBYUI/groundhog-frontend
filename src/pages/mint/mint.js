@@ -15,14 +15,14 @@ const Mint = () => {
       name: "Terra Hog",
       cost: 200,
       symbol: "terra",
-      image: "http://localhost:3000/art/barrel.gif",
+      image: "/art/barrel.gif",
     },
     {
       id: 2,
       name: "Shy Hog",
       cost: 600,
       symbol: "shy",
-      image: "http://localhost:3000/art/logo.gif",
+      image: "/art/logo.gif",
     },
   ];
 

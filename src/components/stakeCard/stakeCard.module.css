@@ -1,0 +1,33 @@
+.cardContainer {
+  padding: 5% 8%;
+}
+
+.stakeCard {
+  align-self: center;
+}
+
+.stakeCard button {
+  background-color: transparent;
+  padding: 10px 58px;
+  border: 2px solid #cf754a;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #745330;
+  display: block;
+  margin: 25px auto 20px auto;
+}
+
+.stakeCard button:hover {
+  background-color: #cf754a;
+  color: white;
+}
+
+.stakeCard > p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  color: #949494;
+}

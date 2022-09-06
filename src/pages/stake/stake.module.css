@@ -1,0 +1,26 @@
+.stakeSection {
+  margin-bottom: 40px;
+}
+
+.stakeSection h3 {
+  color: #cf754a;
+}
+
+.stakeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 3% 5%;
+}
+
+.stakeGrid > img {
+  margin-top: 15px;
+  width: 70%;
+  justify-self: center;
+}
+
+@media only screen and (min-width: 868.5px) {
+  .stakeGrid > img {
+    margin-top: 0;
+    justify-self: flex-end;
+  }
+}
