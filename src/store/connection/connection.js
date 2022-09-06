@@ -4,7 +4,7 @@ import { setLocalStorage, getFromLocalStorage } from "../../helpers/utils";
 const initialState = getFromLocalStorage("connection") || {
   connectionState: {
     connected: false,
-    address: "dgdgtdghtdg",
+    address: "",
   },
 };
 

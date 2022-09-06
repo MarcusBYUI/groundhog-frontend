@@ -1,0 +1,15 @@
+.MintGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 300px));
+  padding: 5% 5%;
+  justify-items: center;
+  gap: 25px;
+}
+
+.mintSection {
+  margin-bottom: 80px;
+}
+
+.mintSection h3 {
+  color: #cf754a;
+}

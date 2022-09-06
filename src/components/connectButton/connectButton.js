@@ -53,7 +53,7 @@ const ConnectButton = () => {
     <div className={styles.buttonContainer}>
       <button onClick={connectButtonHandler}>
         {!connected
-          ? "Connect"
+          ? "Connect Wallet"
           : `${address.substr(0, 5)}...${address.substr(36)}`}
       </button>
     </div>
