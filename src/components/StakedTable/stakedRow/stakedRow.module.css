@@ -1,0 +1,60 @@
+.stakedHeader,
+.stakedRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  align-items: center;
+  justify-items: center;
+}
+
+.stakedHeader p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
+  color: #cf754a;
+  margin: 5px 0;
+}
+
+.stakedRow {
+  padding: 10px 0;
+}
+
+.stakedRow > * {
+  margin: 7px 0;
+}
+
+.stakedRow span {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+
+  color: #949494;
+}
+
+.stakedRow button {
+  background: #ffffff;
+  border: 2px solid #cf754a;
+  box-shadow: 0px 1px 8px 1px rgb(0 0 0 / 20%);
+  border-radius: 3px;
+  width: max-content;
+  padding: 5px 28px;
+  display: block;
+  cursor: pointer;
+  color: #cf754a;
+  font-size: 13px;
+}
+
+.stakedRow button:hover {
+  background-color: #cf754a;
+  color: white;
+}
+
+@media only screen and (min-width: 1080px) {
+  .stakedHeader p {
+    margin: 15px 0;
+  }
+  .stakedRow > * {
+    margin: 0;
+  }
+}

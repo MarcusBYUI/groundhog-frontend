@@ -1,0 +1,13 @@
+.stakedContainer {
+  padding: 35px;
+}
+
+.stakedContainer hr {
+  border: none;
+  height: 0.5px;
+  background-color: #cf754a;
+}
+
+.stakedContainer > h3 {
+  text-align: center;
+}

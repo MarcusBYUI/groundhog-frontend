@@ -1,0 +1,6 @@
+.countdown {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1px;
+}

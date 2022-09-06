@@ -7,6 +7,7 @@ import SectionWidth from "../../components/sectionWidth/sectionWidth";
 import Footer from "../../components/footer/footer";
 import styles from "./stake.module.css";
 import StakeCard from "../../components/stakeCard/stakeCard";
+import StakedTable from "../../components/StakedTable/StakedTable";
 
 const Stake = () => {
   return (
@@ -24,6 +25,14 @@ const Stake = () => {
               <StakeCard />
               <img src={require("../../assets/mine.png")} alt="mine" />
             </div>
+          </Card>
+        </section>
+
+        <section className={styles.stakeSection}>
+          <h3>STAKED</h3>
+
+          <Card>
+            <StakedTable />
           </Card>
         </section>
       </SectionWidth>
