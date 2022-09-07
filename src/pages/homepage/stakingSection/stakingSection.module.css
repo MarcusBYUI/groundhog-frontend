@@ -44,7 +44,7 @@
 
 .stakingText > p {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 23px;
   color: #745330;
   text-align: justify;
@@ -74,5 +74,9 @@
 
   .stakingimage img {
     margin-top: 0;
+  }
+
+  .stakingText > p {
+    font-size: 16px;
   }
 }
