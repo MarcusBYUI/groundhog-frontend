@@ -4,6 +4,7 @@ import { getFromLocalStorage, setLocalStorage } from "../../helpers/utils";
 const initialState = getFromLocalStorage("authState") || {
   loginPop: false,
   signupPop: false,
+  adminPop: false,
   loggedIn: {
     state: false,
     token: "",
@@ -19,6 +20,9 @@ const authSlice = createSlice({
     },
     SetSignupPop(state, action) {
       state.signupPop = action.payload;
+    },
+    SetAdminPop(state, action) {
+      state.adminPop = action.payload;
     },
     setLoggedIn(state, action) {
       state.signupPop = false;

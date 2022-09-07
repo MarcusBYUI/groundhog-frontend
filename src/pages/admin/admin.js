@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./admin.module.css";
 import SectionWidth from "../../components/sectionWidth/sectionWidth";
@@ -10,8 +11,16 @@ import Users from "./components/users/users";
 import PaymentDue from "./components/paymentDue/paymentDue";
 import MultiSender from "./components/multiSender/multiSender";
 import PaymentsHistory from "./components/paymentsHistory/paymentsHistory";
+import Nfts from "./components/nfts/nfts";
+import { authSliceActions } from "../../store/auth/auth";
+import AddNFT from "./components/nfts/addNFT/addNFT";
 
 const Admin = () => {
+  const authState = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const handleAddNFTPop = () => {
+    dispatch(authSliceActions.SetAdminPop(true));
+  };
   return (
     <>
       <Card>
@@ -20,9 +29,12 @@ const Admin = () => {
       <ConnectButton />
       <SectionWidth>
         <section className={styles.nftSection}>
+          <button onClick={handleAddNFTPop}>Add NFT</button>
           <h3>NFTs</h3>
 
-          <Card></Card>
+          <Card>
+            <Nfts />
+          </Card>
         </section>
         <section className={styles.usersSection}>
           <h3>Users</h3>
@@ -59,6 +71,7 @@ const Admin = () => {
       <Card>
         <Footer />
       </Card>
+      {authState.adminPop && <AddNFT />}
     </>
   );
 };

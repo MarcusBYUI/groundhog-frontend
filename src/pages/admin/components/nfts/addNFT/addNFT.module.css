@@ -1,0 +1,131 @@
+.loginPop {
+  position: fixed;
+  top: 5%;
+  margin: 0 5px;
+  width: -webkit-fill-available;
+  padding: 35px 30px 50px 30px;
+  background: url(../../../../../assets/pupbg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 3;
+  border-radius: 10px;
+}
+
+.loginPop h2 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 44px;
+  text-align: center;
+  color: #cf754a;
+  margin-top: 0;
+}
+
+.loginPop p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 23px;
+  text-align: center;
+  color: #1d1c1b;
+  margin: 0;
+}
+
+.loginPop form {
+  margin: 30px 0;
+}
+
+.loginPop form label {
+  display: block;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  margin-top: 15px;
+  color: #745330;
+}
+
+.loginPop form label input {
+  display: block;
+  border: 2px solid #cf754a;
+  border-radius: 10px;
+  height: 33px;
+  padding: 0 5px;
+  width: -webkit-fill-available;
+  background: transparent;
+  margin-top: 2px;
+  color: #745330;
+}
+
+.loginPop form label input::placeholder {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(216, 155, 90, 0.6);
+}
+
+.loginPop form label input:focus-visible {
+  outline: none;
+}
+
+.formButton {
+  display: block;
+  margin: 25px auto;
+  background: #ffffff;
+  border: 2px solid #cf754a;
+  border-radius: 5px;
+  height: 40px;
+  padding: 0 45px;
+  cursor: pointer;
+  color: #745330;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.formButton:hover {
+  background: #cf754a;
+  color: #ffffff;
+}
+
+.loginPop > div:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.loginPop > div:last-child span {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  color: #1d1c1b;
+  margin-right: 5px;
+}
+
+.loginPop > div:last-child p {
+  padding: 0;
+  margin: 0;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  cursor: pointer;
+  color: #cf754a;
+}
+
+.loginPop i {
+  display: block;
+  margin: 0 0 10px auto;
+  width: min-content;
+  color: #cf754a;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 545px) {
+  .loginPop {
+    left: calc(50% - 220px);
+    width: max-content;
+    padding: 20px 60px 20px 60px;
+  }
+}

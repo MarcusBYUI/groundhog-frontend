@@ -18,3 +18,19 @@
 .paymentsSection {
   width: 350px;
 }
+
+.nftSection > button {
+  filter: drop-shadow(0px 3px 10px rgba(207, 117, 74, 0.25));
+  background-color: white;
+  border-radius: 10px;
+  border: none;
+  width: 180px;
+  height: 120px;
+  margin: 45px 0;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+
+  color: #cf754a;
+}

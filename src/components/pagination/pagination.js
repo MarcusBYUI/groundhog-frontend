@@ -3,7 +3,7 @@ import { Pagination } from "@mui/material";
 
 import styles from "./pagination.module.css";
 
-const pageSize = 2;
+const pageSize = 5;
 
 const AppPagination = ({ callback, rawData }) => {
   const [pagination, setPagination] = useState({
