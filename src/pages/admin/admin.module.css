@@ -1,0 +1,20 @@
+.senderSection p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 19px;
+
+  color: #cf754a;
+}
+
+.nftSection,
+.usersSection,
+.duePaymentSection,
+.senderSection,
+.paymentsSection {
+  margin-bottom: 80px;
+}
+
+.paymentsSection {
+  width: 350px;
+}

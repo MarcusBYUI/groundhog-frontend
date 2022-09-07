@@ -1,0 +1,41 @@
+.multiSenderForm > * {
+  display: block;
+}
+
+.multiSenderForm {
+  padding: 3%;
+}
+
+.multiSenderForm textarea {
+  border: 2px solid #cf754a;
+  border-radius: 5px;
+  padding: 2%;
+  width: -webkit-fill-available;
+}
+
+.multiSenderForm textarea::-webkit-scrollbar {
+  background: none;
+  width: 4px;
+}
+
+.multiSenderForm textarea::-webkit-scrollbar-thumb {
+  background-color: #cf754a;
+  border-radius: 30px;
+}
+
+.multiSenderForm input {
+  background-color: transparent;
+  padding: 10px 28px;
+  border: 2px solid #cf754a;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #745330;
+  display: block;
+  margin: 25px auto;
+}
+
+.multiSenderForm input:hover {
+  background-color: #cf754a;
+  color: white;
+}

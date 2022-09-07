@@ -1,0 +1,46 @@
+.paymentsGrid * {
+  display: block;
+}
+
+.paymentsGrid {
+  padding: 7%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: max-content;
+  gap: 15px;
+}
+
+.paymentsGrid label {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #cf754a;
+}
+
+.paymentsGrid label input {
+  border: 2px solid #cf754a;
+  border-radius: 7px;
+  height: 36px;
+  padding: 2px 5px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.paymentsButton {
+  grid-column: 1/4;
+  justify-self: flex-end;
+  background-color: transparent;
+  padding: 10px 28px;
+  border: 2px solid #cf754a;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #745330;
+  margin: 25px 0;
+}
+
+.paymentsButton:hover {
+  background-color: #cf754a;
+  color: white;
+}

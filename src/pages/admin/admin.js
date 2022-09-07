@@ -8,6 +8,8 @@ import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import Users from "./components/users/users";
 import PaymentDue from "./components/paymentDue/paymentDue";
+import MultiSender from "./components/multiSender/multiSender";
+import PaymentsHistory from "./components/paymentsHistory/paymentsHistory";
 
 const Admin = () => {
   return (
@@ -38,13 +40,20 @@ const Admin = () => {
         </section>
         <section className={styles.senderSection}>
           <h3>Sender</h3>
-
-          <Card></Card>
+          <p>
+            Each transaction is separated by a comma and the address should be
+            separated from the amount with a colon
+          </p>
+          <Card>
+            <MultiSender />
+          </Card>
         </section>
         <section className={styles.paymentsSection}>
           <h3>Payments</h3>
 
-          <Card></Card>
+          <Card>
+            <PaymentsHistory />
+          </Card>
         </section>
       </SectionWidth>
       <Card>
