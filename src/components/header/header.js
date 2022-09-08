@@ -39,7 +39,7 @@ const Header = () => {
                 </li>
               </ul>
             </div>
-            <Link to="/">Account</Link>
+            <Link to="/stake">Account</Link>
           </nav>
         </div>
       </SectionWidth>

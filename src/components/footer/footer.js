@@ -28,15 +28,14 @@ const Footer = () => {
           </div>
           <div>
             <h4>Pages</h4>
-            <Link to="/dashboard/mint">Mint</Link>
-            <Link to="/dashboard/stake">Stake</Link>
+            <Link to="/mint">Mint</Link>
+            <Link to="/stake">Stake</Link>
           </div>
           <div>
             <h4>Contact</h4>
             <a href="https://google.com" target="_blank" rel="noreferrer">
               Support
             </a>
-           
           </div>
         </div>
       </SectionWidth>
