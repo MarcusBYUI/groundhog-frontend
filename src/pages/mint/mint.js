@@ -23,7 +23,7 @@ const Mint = () => {
     {
       id: 2,
       name: "Shy Hog",
-      cost: 0.02,
+      cost: 0.03,
       symbol: "shy",
       image: "/art/logo.gif",
     },

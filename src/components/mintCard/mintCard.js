@@ -4,10 +4,12 @@ import { ethers } from "ethers";
 
 import styles from "./mintCard.module.css";
 import Loader from "../loader/loader";
-import Message from "../message/message";
 import { notificationActions } from "../../store/notification/notification";
+import abi from "./abi.json";
 
 const MintCard = ({ data }) => {
+  const mintContract = "0x5Ec97c9E2fA9473324d78B2E207ec8E50B8865D1";
+
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
@@ -27,18 +29,14 @@ const MintCard = ({ data }) => {
       };
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
-      //const contract = new ethers.Contract(mintContract, mintABI, signer);
+      const contract = new ethers.Contract(mintContract, abi, signer);
 
       try {
-        //const response = await contract.mintCard(league, valueFee);
-        //await response.wait();
+        const response = await contract.mintNFT(data.id, valueFee);
+        await response.wait();
 
         //send address to api to confirm, set timeout
-        dispatch(
-          notificationActions.setMessage(
-            "Membership card was minted succesfully, you will receive complete league momentarily"
-          )
-        );
+        dispatch(notificationActions.setMessage("NFT Minted Succesfully"));
 
         setLoading(false);
       } catch (error) {
