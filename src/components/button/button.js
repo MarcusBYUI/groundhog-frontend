@@ -33,9 +33,7 @@ const Button = ({ data }) => {
     <button
       onClick={handleClick}
       className={`${styles.button} ${styles[data.style]}`}
-    >
-      {data.name}
-    </button>
+    ></button>
   );
 };
 
