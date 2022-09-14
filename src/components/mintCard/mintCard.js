@@ -5,10 +5,10 @@ import { ethers } from "ethers";
 import styles from "./mintCard.module.css";
 import Loader from "../loader/loader";
 import { notificationActions } from "../../store/notification/notification";
-import abi from "./abi.json";
+import { config } from "../../config";
 
 const MintCard = ({ data }) => {
-  const mintContract = "0x5Ec97c9E2fA9473324d78B2E207ec8E50B8865D1";
+  const { nftContract: mintContract, nftABI: abi } = config;
 
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);

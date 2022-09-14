@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   message: "",
   pushMessage: "",
+  constractAction: false,
 };
 
 const notificationSlice = createSlice({
@@ -14,6 +15,9 @@ const notificationSlice = createSlice({
     },
     setPushMessage(state, action) {
       state.pushMessage = action.payload;
+    },
+    setContractAction(state) {
+      state.constractAction = !state.constractAction;
     },
   },
 });

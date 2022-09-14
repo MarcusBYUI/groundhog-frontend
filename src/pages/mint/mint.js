@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 import styles from "./mint.module.css";
 import ConnectButton from "../../components/connectButton/connectButton";
@@ -8,10 +7,8 @@ import Header from "../../components/header/header";
 import SectionWidth from "../../components/sectionWidth/sectionWidth";
 import MintCard from "../../components/mintCard/mintCard";
 import Footer from "../../components/footer/footer";
-import Message from "../../components/message/message";
 
 const Mint = () => {
-  const { pushMessage } = useSelector((state) => state.notification);
   const NFTs = [
     {
       id: 1,
@@ -31,8 +28,6 @@ const Mint = () => {
 
   return (
     <>
-      {!!pushMessage ? <Message message={pushMessage} /> : ""}
-
       <Card>
         <Header />
       </Card>
