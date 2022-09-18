@@ -54,7 +54,9 @@ const Admin = () => {
           <h3>Sender</h3>
           <p>
             Each transaction is separated by a comma and the address should be
-            separated from the amount with a colon
+            separated from the amount with a colon; Transactions happens in
+            batches of 50 transaction, so if you have over 50 transaction, your
+            wallet would prompt you to approve another batch.
           </p>
           <Card>
             <MultiSender />
