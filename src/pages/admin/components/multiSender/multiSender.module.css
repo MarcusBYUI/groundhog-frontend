@@ -23,19 +23,19 @@
   border-radius: 30px;
 }
 
-.multiSenderForm input {
+.multiSenderForm button {
   background-color: transparent;
-  padding: 10px 28px;
+  padding: 10px 58px;
   border: 2px solid #cf754a;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
   color: #745330;
   display: block;
-  margin: 25px auto;
+  margin: 25px auto 20px auto;
 }
 
-.multiSenderForm input:hover {
+.multiSenderForm button:hover {
   background-color: #cf754a;
   color: white;
 }
