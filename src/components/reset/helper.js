@@ -11,7 +11,7 @@ export const passwordReset = async (
 ) => {
   e.preventDefault();
 
-  //setLoading(true);
+  setLoading(true);
   const form = new FormData(e.target);
   const strongPassword = new RegExp(
     /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}[\]|\\:;"'<>,.?/_₹]).{6,16}$/
@@ -27,6 +27,8 @@ export const passwordReset = async (
       //back to login view
       dispatch(authSliceActions.setLoginPop(true));
       dispatch(authSliceActions.setResetPop(false));
+      setLoading(false);
+
       dispatch(notificationActions.setMessage(data.message));
     } else {
       setLoading(false);
