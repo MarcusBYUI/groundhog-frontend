@@ -2,7 +2,13 @@ import { apiRequest } from "../../helpers/connections";
 import { authSliceActions } from "../../store/auth/auth";
 import { notificationActions } from "../../store/notification/notification";
 
-export const formHandler = async (e, setLoading, dispatch) => {
+export const formHandler = async (
+  e,
+  setLoading,
+  dispatch,
+  setResendVerification,
+  setEmail
+) => {
   e.preventDefault();
   setLoading(true);
   const form = new FormData(e.target);
@@ -16,10 +22,12 @@ export const formHandler = async (e, setLoading, dispatch) => {
     }
 
     const data = await apiRequest("auth/login", body, "post");
-    if (data.status.message === "User Not Verified") {
+    if (data.message === "User Not Verified") {
       setLoading(false);
+      setEmail(body.email);
+      setResendVerification(true);
     } else if (typeof data === "object") {
-      if (data.user.isverified) {
+      if (data.user && data.user.isverified) {
         const auth = {};
         auth.state = true;
         auth.token = data.token;
@@ -29,6 +37,7 @@ export const formHandler = async (e, setLoading, dispatch) => {
         setLoading(false);
       } else {
         dispatch(notificationActions.setMessage("Invalid LogIn Credentials"));
+        setLoading(false);
       }
     } else {
       setLoading(false);
@@ -43,5 +52,39 @@ export const formHandler = async (e, setLoading, dispatch) => {
     );
 
     setLoading(false);
+  }
+};
+
+export const resendVer = async (setLoading, email, dispatch, setResent) => {
+  const resent = JSON.parse(localStorage.getItem("resent"));
+
+  if (typeof resent === "object" && resent.email === email) {
+    setResent(true);
+  } else {
+    setLoading(true);
+    const data = await apiRequest("auth/resend", { email }, "post");
+    if (data.message) {
+      dispatch(
+        notificationActions.setMessage(
+          "A verification email has been sent to " + email
+        )
+      );
+
+      setResent(true);
+
+      const item = {
+        email,
+        expiry: new Date().getTime() + 1800,
+      };
+      localStorage.setItem("resent", JSON.stringify(item));
+
+      setLoading(false);
+    } else {
+      dispatch(
+        notificationActions.setMessage("An error occurred while sending email")
+      );
+
+      setLoading(false);
+    }
   }
 };

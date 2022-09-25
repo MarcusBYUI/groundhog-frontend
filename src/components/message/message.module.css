@@ -7,7 +7,7 @@
   border: 2px solid #cf754a;
   transition: all 500ms ease-in;
   background-color: white;
-  z-index: 3;
+  z-index: 30;
   padding: 0 8px;
 }
 
