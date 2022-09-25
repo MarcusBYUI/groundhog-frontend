@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import OverLay from "../overLay/overLay";
 
 import styles from "./signup.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authSliceActions } from "../../store/auth/auth";
+import { notificationActions } from "../../store/notification/notification";
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const { message } = useSelector((state) => state.notification);
 
   const handleBackdropCLick = () => {
     dispatch(authSliceActions.SetSignupPop(false));
@@ -16,6 +18,23 @@ const Signup = () => {
     dispatch(authSliceActions.SetSignupPop(false));
     dispatch(authSliceActions.setLoginPop(true));
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    dispatch(notificationActions.setPushMessage(message));
+
+    const timeout = setTimeout(() => {
+      dispatch(notificationActions.setMessage(""));
+    }, 4500);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [message, dispatch]);
+
   return (
     <>
       <OverLay closeHandler={handleBackdropCLick} />
@@ -26,7 +45,7 @@ const Signup = () => {
           Create an account to gain minting and <br /> staking access
         </p>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <label>
             Full Name
             <input type="text" placeholder="John Doe" required />
@@ -45,7 +64,7 @@ const Signup = () => {
             <input type="tel" placeholder="+1 ### ### ####" required />
           </label>
           <label>
-            Address
+            Home Address
             <input
               type="text"
               placeholder="000 Hog Camp Road Oak Lawn, IL 00000"

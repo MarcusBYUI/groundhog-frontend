@@ -8,6 +8,7 @@ import StakingSection from "./stakingSection/stakingSection";
 import Footer from "../../components/footer/footer";
 import Login from "../../components/login/login";
 import Signup from "../../components/signup/signup";
+import Reset from "../../components/reset/reset";
 
 const Hompage = () => {
   const authState = useSelector((state) => state.auth);
@@ -20,6 +21,7 @@ const Hompage = () => {
       <Footer />
       {authState.loginPop && <Login />}
       {authState.signupPop && <Signup />}
+      {authState.resetPop && <Reset />}
     </>
   );
 };

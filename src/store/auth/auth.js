@@ -5,6 +5,7 @@ const initialState = getFromLocalStorage("authState") || {
   loginPop: false,
   signupPop: false,
   adminPop: false,
+  resetPop: false,
   loggedIn: {
     state: false,
     token: "",
@@ -24,6 +25,9 @@ const authSlice = createSlice({
     },
     SetAdminPop(state, action) {
       state.adminPop = action.payload;
+    },
+    setResetPop(state, action) {
+      state.resetPop = action.payload;
     },
     setLoggedIn(state, action) {
       state.signupPop = false;

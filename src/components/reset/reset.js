@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import OverLay from "../overLay/overLay";
-import styles from "./login.module.css";
+import styles from "./reset.module.css";
 import { authSliceActions } from "../../store/auth/auth";
 import { notificationActions } from "../../store/notification/notification";
 import Loader from "../loader/loader";
-import { formHandler, resendVer } from "./helper";
+import { formHandler, passwordReset } from "./helper";
 
-const Login = () => {
+const Reset = () => {
   const [loading, setLoading] = useState(false);
-  const [resendVerification, setResendVerification] = useState(false);
-  const [email, setEmail] = useState("");
+  const [codeSent, setCodeSent] = useState(false);
   //state that manages that verification was sent
   const [resent, setResent] = useState(false);
 
@@ -19,17 +18,12 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const handleBackdropCLick = () => {
-    dispatch(authSliceActions.setLoginPop(false));
+    dispatch(authSliceActions.setResetPop(false));
   };
 
   const handleSignUpPop = () => {
-    dispatch(authSliceActions.setLoginPop(false));
+    dispatch(authSliceActions.setResetPop(false));
     dispatch(authSliceActions.SetSignupPop(true));
-  };
-
-  const handleReset = () => {
-    dispatch(authSliceActions.setResetPop(true));
-    dispatch(authSliceActions.setLoginPop(false));
   };
 
   useEffect(() => {
@@ -48,34 +42,44 @@ const Login = () => {
       <OverLay closeHandler={handleBackdropCLick} />
       <div className={styles.loginPop}>
         <i onClick={handleBackdropCLick} className="fa-solid fa-xmark"></i>
-        <h2>GroundHog Login</h2>
-        <p>Login to gain minting and staking access</p>
-        {resendVerification ? (
-          <div className={styles.resend}>
-            <h3>You account is not verified</h3>
-            <p>Do you want to resend verification email?</p>
-            <button
-              onClick={() => {
-                !resent && resendVer(setLoading, email, dispatch, setResent);
-              }}
-              disabled={loading}
-              className={styles.formButton}
-            >
-              {loading ? <Loader /> : " Yes"}
+        <h2>GroundHog Reset</h2>
+        <p>Reset your password to gain log in access</p>
+        {codeSent ? (
+          <form
+            onSubmit={(e) => {
+              passwordReset(e, setLoading, dispatch, setResent);
+            }}
+            className={styles.resend}
+          >
+            <label>
+              Verification Code
+              <input
+                name="token"
+                type="text"
+                placeholder="#########"
+                required
+              />
+            </label>
+
+            <label>
+              New Password
+              <input
+                name="password"
+                type="password"
+                placeholder="##########"
+                required
+              />
+            </label>
+
+            <button disabled={loading} className={styles.formButton}>
+              {loading ? <Loader /> : " Change Password"}
             </button>
-            {resent && <span>You can resend again after 30mins</span>}
-          </div>
+          </form>
         ) : (
           <form
             className={styles.form}
             onSubmit={(e) => {
-              formHandler(
-                e,
-                setLoading,
-                dispatch,
-                setResendVerification,
-                setEmail
-              );
+              formHandler(e, setLoading, dispatch, setResent, setCodeSent);
             }}
           >
             <label>
@@ -87,19 +91,10 @@ const Login = () => {
                 required
               />
             </label>
-            <label>
-              Password
-              <input
-                name="password"
-                type="password"
-                placeholder="##########"
-                required
-              />
-            </label>
-            <span onClick={handleReset}>Forgot password? click here</span>
+            {resent && <span>You can resend again after 30mins</span>}
 
             <button disabled={loading} className={styles.formButton}>
-              {loading ? <Loader /> : " login"}
+              {loading ? <Loader /> : " Send Code"}
             </button>
           </form>
         )}
@@ -113,4 +108,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Reset;

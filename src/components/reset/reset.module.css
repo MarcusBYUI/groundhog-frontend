@@ -132,21 +132,13 @@
   font-size: 14px;
 }
 
-.resend span {
-  font-size: 13px;
-  color: green;
-  display: block;
-  text-align: center;
-}
-
 .form span {
   font-size: 13px;
   display: block;
   text-align: right;
   margin-top: 3px;
-  text-decoration: underline;
   user-select: none;
-  cursor: pointer;
+  color: red;
 }
 
 @media only screen and (min-width: 545px) {
