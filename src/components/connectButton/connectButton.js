@@ -7,12 +7,9 @@ import { connectionActions } from "../../store/connection/connection";
 import { providerOptions } from "./providerOptions";
 
 import styles from "./connectButton.module.css";
-import Message from "../message/message";
 const ConnectButton = () => {
   //const currentChainId = 56;
   const dispatch = useDispatch();
-
-  const { pushMessage } = useSelector((state) => state.notification);
 
   const { connected, address } = useSelector(
     (state) => state.connection.connectionState
@@ -54,8 +51,6 @@ const ConnectButton = () => {
 
   return (
     <>
-      {!!pushMessage ? <Message message={pushMessage} /> : ""}
-
       <div className={styles.buttonContainer}>
         <button onClick={connectButtonHandler}>
           {!connected

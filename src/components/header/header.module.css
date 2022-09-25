@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: 150px 1fr;
   align-items: center;
+  user-select: none;
 }
 
 .logoImage img {
@@ -30,11 +31,17 @@
   list-style: none;
 }
 
-.headerGrid a {
+.headerGrid a,
+.headerGrid span {
   text-decoration: none;
   font-weight: 700;
   font-size: 18px;
   z-index: 1;
+  cursor: pointer;
+}
+
+.headerGrid span:hover {
+  color: #cf754a;
 }
 
 @media only screen and (min-width: 1080px) {
@@ -45,7 +52,8 @@
     justify-self: auto;
   }
 
-  .headerGrid a {
+  .headerGrid a,
+  .headerGrid span {
     font-size: 16px;
   }
 }

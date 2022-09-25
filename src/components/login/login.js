@@ -1,11 +1,17 @@
-import React from "react";
-import OverLay from "../overLay/overLay";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+import OverLay from "../overLay/overLay";
 import styles from "./login.module.css";
-import { useDispatch } from "react-redux";
 import { authSliceActions } from "../../store/auth/auth";
+import { notificationActions } from "../../store/notification/notification";
+import Loader from "../loader/loader";
+import { formHandler } from "./helper";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
+
+  const { message } = useSelector((state) => state.notification);
   const dispatch = useDispatch();
 
   const handleBackdropCLick = () => {
@@ -16,6 +22,18 @@ const Login = () => {
     dispatch(authSliceActions.setLoginPop(false));
     dispatch(authSliceActions.SetSignupPop(true));
   };
+
+  useEffect(() => {
+    dispatch(notificationActions.setPushMessage(message));
+
+    const timeout = setTimeout(() => {
+      dispatch(notificationActions.setMessage(""));
+    }, 4500);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [message, dispatch]);
   return (
     <>
       <OverLay closeHandler={handleBackdropCLick} />
@@ -24,16 +42,32 @@ const Login = () => {
         <h2>GroundHog Login</h2>
         <p>Login to gain minting and staking access</p>
 
-        <form>
+        <form
+          onSubmit={() => {
+            formHandler(setLoading, dispatch);
+          }}
+        >
           <label>
             Email Address
-            <input type="email" placeholder="example@gmail.com" required />
+            <input
+              name="email"
+              type="email"
+              placeholder="example@gmail.com"
+              required
+            />
           </label>
           <label>
             Password
-            <input type="password" placeholder="##########" required />
+            <input
+              name="password"
+              type="password"
+              placeholder="##########"
+              required
+            />
           </label>
-          <input className={styles.formButton} type="submit" value="Login" />
+          <button disabled={loading} className={styles.formButton}>
+            {loading ? <Loader /> : " login"}
+          </button>
         </form>
 
         <div>

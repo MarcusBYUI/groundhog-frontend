@@ -8,6 +8,7 @@ const initialState = getFromLocalStorage("authState") || {
   loggedIn: {
     state: false,
     token: "",
+    user: {},
   },
 };
 
