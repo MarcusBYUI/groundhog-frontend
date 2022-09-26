@@ -70,9 +70,7 @@ const Admin = () => {
           </Card>
         </section>
       </SectionWidth>
-      <Card>
-        <Footer />
-      </Card>
+      <Footer />
       {authState.adminPop && <AddNFT />}
     </>
   );

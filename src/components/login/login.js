@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import OverLay from "../overLay/overLay";
 import styles from "./login.module.css";
@@ -14,6 +15,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   //state that manages that verification was sent
   const [resent, setResent] = useState(false);
+  const navigate = useNavigate();
 
   const { message } = useSelector((state) => state.notification);
   const dispatch = useDispatch();
@@ -74,7 +76,8 @@ const Login = () => {
                 setLoading,
                 dispatch,
                 setResendVerification,
-                setEmail
+                setEmail,
+                navigate
               );
             }}
           >

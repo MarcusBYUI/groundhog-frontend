@@ -7,7 +7,8 @@ export const formHandler = async (
   setLoading,
   dispatch,
   setResendVerification,
-  setEmail
+  setEmail,
+  navigate
 ) => {
   e.preventDefault();
   setLoading(true);
@@ -35,6 +36,10 @@ export const formHandler = async (
         dispatch(authSliceActions.setLoggedIn(auth));
         dispatch(notificationActions.setMessage("Login Successful"));
         setLoading(false);
+
+        if (data.user.level === "admin") {
+          navigate("/gadmin");
+        }
       } else {
         dispatch(notificationActions.setMessage("Invalid LogIn Credentials"));
         setLoading(false);

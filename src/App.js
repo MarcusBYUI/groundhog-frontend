@@ -5,6 +5,7 @@ import Mint from "./pages/mint/mint";
 import Admin from "./pages/admin/admin";
 import PrivateRoutes from "./helpers/privateRoute";
 import Verify from "./pages/verify/verify";
+import AdminRoute from "./helpers/adminRoute";
 function App() {
   return (
     <>
@@ -16,8 +17,9 @@ function App() {
           <Route path="/mint" exact element={<Mint />} />
           <Route path="/stake" exact element={<Stake />} />
         </Route>
-
-        <Route path="/gadmin" exact element={<Admin />} />
+        <Route element={<AdminRoute />}>
+          <Route path="/gadmin" exact element={<Admin />} />
+        </Route>
       </Routes>
     </>
   );
