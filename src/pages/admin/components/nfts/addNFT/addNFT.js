@@ -1,17 +1,54 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../../../../components/loader/loader";
 
 import OverLay from "../../../../../components/overLay/overLay";
 import { authSliceActions } from "../../../../../store/auth/auth";
+import { notificationActions } from "../../../../../store/notification/notification";
 import styles from "./addNFT.module.css";
+import { handleSubmission as submissionHelper } from "./helpers";
 
 const AddNFT = () => {
   const dispatch = useDispatch();
+  const [addedNFT, setAddedNFT] = useState(false);
+  const [updateNFT, setUpdateNFT] = useState(false);
+  const [loading, setLoading] = useState({
+    addNFTLoading: false,
+    updateNFTLoading: false,
+  });
+
+  const authState = useSelector((state) => state.auth);
+
+  const { message } = useSelector((state) => state.notification);
 
   const handleBackdropCLick = () => {
     dispatch(authSliceActions.SetAdminPop(false));
   };
 
+  const handleSubmission = (e) => {
+    submissionHelper(
+      e,
+      addedNFT,
+      updateNFT,
+      setAddedNFT,
+      setUpdateNFT,
+      setLoading,
+      authState.loggedIn,
+      dispatch
+    );
+  };
+
+  useEffect(() => {
+    dispatch(notificationActions.setPushMessage(message));
+
+    const timeout = setTimeout(() => {
+      dispatch(notificationActions.setMessage(""));
+    }, 4500);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [message, dispatch]);
   return (
     <>
       <OverLay closeHandler={handleBackdropCLick} />
@@ -19,35 +56,46 @@ const AddNFT = () => {
         <i onClick={handleBackdropCLick} className="fa-solid fa-xmark"></i>
         <h2>Add NFT</h2>
 
-        <form>
+        <form onSubmit={handleSubmission}>
           <label>
             NFT Name
-            <input type="text" placeholder="Test Name" required />
+            <input
+              name="nftName"
+              type="text"
+              placeholder="Test Name"
+              required
+            />
           </label>
           <label>
             Image Url
-            <input type="text" placeholder="https://mynftimage.jpg" required />
+            <input
+              name="image"
+              type="text"
+              placeholder="https://mynftimage.jpg"
+              required
+            />
           </label>
           <label>
             Cost
-            <input type="tel" placeholder="Cost" required />
+            <input name="cost" type="tel" placeholder="Cost" required />
           </label>
           <label>
             Percentage
-            <input type="tel" placeholder="6" required />
+            <input name="percentage" type="tel" placeholder="6" required />
           </label>
 
-          <input className={styles.formButton} type="submit" value="Add NFT" />
-          <input
+          <button
+            disabled={loading.addNFTLoading || addedNFT}
             className={styles.formButton}
-            type="submit"
-            value="Update NFT Contract"
-          />
-          <input
+          >
+            {loading.addNFTLoading ? <Loader /> : "Add NFT"}
+          </button>
+          <button
+            disabled={loading.updateNFTLoading || !addedNFT || updateNFT}
             className={styles.formButton}
-            type="submit"
-            value="Update Staking Contract"
-          />
+          >
+            {loading.updateNFTLoading ? <Loader /> : "Update NFT Contract"}
+          </button>
         </form>
       </div>
     </>

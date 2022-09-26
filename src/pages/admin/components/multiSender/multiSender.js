@@ -67,17 +67,7 @@ const MultiSender = () => {
 0x921ede05BCCe447fC79E3175ff4bD220Eef144C9: 500
         "
         required
-      >
-        0x921ede05BCCe447fC79E3175ff4bD220Eef144C9: 500,
-        0x921ede05BCCe447fC79E3175ff4bD220Eef144C9: 500,
-        0x921ede05BCCe447fC79E3175ff4bD220Eef144C9: 500,
-        0x921ede05BCCe447fC79E3175ff4bD220Eef144C9: 500,
-        0x921ede05BCCe447fC79E3175ff4bD220Eef144C9: 500,
-        0x921ede05BCCe447fC79E3175ff4bD220Eef144C9: 500,
-        0x921ede05BCCe447fC79E3175ff4bD220Eef144C9: 500,
-        0x921ede05BCCe447fC79E3175ff4bD220Eef144C9: 500,
-        0x921ede05BCCe447fC79E3175ff4bD220Eef144C9: 500
-      </textarea>
+      ></textarea>
       <button disabled={loading}>
         {loading ? (
           <Loader />

@@ -1,5 +1,5 @@
 export const config = {
-  nftContract: "0x32773868020D94233Dd011c8b4eE354AaA115E6c",
+  nftContract: "0x609778a758e0df57FFd61Df7bf264244314e13Ba",
   stakeContract: "0xBC40Db08b18a59f447A79A4Bd1BABe99b254513D",
   USDCContract: "0xc8D92202245f08885ac08d412DC78a19E2f5Fd8C",
   nftABI: [
@@ -11,9 +11,9 @@ export const config = {
           type: "uint256",
         },
         {
-          internalType: "uint256",
+          internalType: "string",
           name: "_id",
-          type: "uint256",
+          type: "string",
         },
         {
           internalType: "string",
@@ -147,9 +147,14 @@ export const config = {
     {
       inputs: [
         {
-          internalType: "uint256",
+          internalType: "contract IERC20",
+          name: "_usdcContract",
+          type: "address",
+        },
+        {
+          internalType: "string",
           name: "_id",
-          type: "uint256",
+          type: "string",
         },
       ],
       name: "mintNFT",
@@ -773,17 +778,17 @@ export const config = {
     {
       inputs: [
         {
-          internalType: "uint256",
+          internalType: "string",
           name: "",
-          type: "uint256",
+          type: "string",
         },
       ],
       name: "nfts",
       outputs: [
         {
-          internalType: "uint256",
+          internalType: "string",
           name: "id",
-          type: "uint256",
+          type: "string",
         },
         {
           internalType: "uint256",

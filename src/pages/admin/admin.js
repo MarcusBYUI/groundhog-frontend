@@ -17,9 +17,12 @@ import AddNFT from "./components/nfts/addNFT/addNFT";
 
 const Admin = () => {
   const authState = useSelector((state) => state.auth);
+  const { connected } = useSelector(
+    (state) => state.connection.connectionState
+  );
   const dispatch = useDispatch();
   const handleAddNFTPop = () => {
-    dispatch(authSliceActions.SetAdminPop(true));
+    connected && dispatch(authSliceActions.SetAdminPop(true));
   };
   return (
     <>
@@ -29,7 +32,9 @@ const Admin = () => {
       <ConnectButton />
       <SectionWidth>
         <section className={styles.nftSection}>
-          <button onClick={handleAddNFTPop}>Add NFT</button>
+          <button onClick={handleAddNFTPop}>
+            {connected ? "Add NFT" : "Not Connected"}
+          </button>
           <h3>NFTs</h3>
 
           <Card>
