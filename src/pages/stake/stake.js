@@ -36,9 +36,7 @@ const Stake = () => {
           </Card>
         </section>
       </SectionWidth>
-      <Card>
-        <Footer />
-      </Card>
+      <Footer />
     </>
   );
 };

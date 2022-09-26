@@ -1,31 +1,8 @@
 export const config = {
-  nftContract: "0x609778a758e0df57FFd61Df7bf264244314e13Ba",
+  nftContract: "0x1A46Dd62c4CC8639562E907E3718b099E05AD27E",
   stakeContract: "0xBC40Db08b18a59f447A79A4Bd1BABe99b254513D",
   USDCContract: "0xc8D92202245f08885ac08d412DC78a19E2f5Fd8C",
   nftABI: [
-    {
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "_fee",
-          type: "uint256",
-        },
-        {
-          internalType: "string",
-          name: "_id",
-          type: "string",
-        },
-        {
-          internalType: "string",
-          name: "_uri",
-          type: "string",
-        },
-      ],
-      name: "addNFT",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
     {
       inputs: [
         {
@@ -88,6 +65,225 @@ export const config = {
       type: "event",
     },
     {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "address",
+          name: "_to",
+          type: "address",
+        },
+        {
+          indexed: true,
+          internalType: "uint256",
+          name: "_tokenId",
+          type: "uint256",
+        },
+      ],
+      name: "Migration",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "address",
+          name: "previousOwner",
+          type: "address",
+        },
+        {
+          indexed: true,
+          internalType: "address",
+          name: "newOwner",
+          type: "address",
+        },
+      ],
+      name: "OwnershipTransferred",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: false,
+          internalType: "address",
+          name: "account",
+          type: "address",
+        },
+      ],
+      name: "Paused",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "address",
+          name: "from",
+          type: "address",
+        },
+        {
+          indexed: true,
+          internalType: "address",
+          name: "to",
+          type: "address",
+        },
+        {
+          indexed: true,
+          internalType: "uint256",
+          name: "tokenId",
+          type: "uint256",
+        },
+      ],
+      name: "Transfer",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: false,
+          internalType: "address",
+          name: "account",
+          type: "address",
+        },
+      ],
+      name: "Unpaused",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "address",
+          name: "devAddress",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256",
+        },
+      ],
+      name: "WithdrawFees",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "address",
+          name: "devAddress",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "address",
+          name: "tokenAddress",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "tokenId",
+          type: "uint256",
+        },
+      ],
+      name: "WithdrawWrongNfts",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "address",
+          name: "devAddress",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "address",
+          name: "tokenAddress",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256",
+        },
+      ],
+      name: "WithdrawWrongTokens",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "address",
+          name: "receiveraddress",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "string",
+          name: "leaguename",
+          type: "string",
+        },
+      ],
+      name: "mintEvent",
+      type: "event",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_owner",
+          type: "address",
+        },
+      ],
+      name: "Owned",
+      outputs: [
+        {
+          internalType: "uint256[]",
+          name: "",
+          type: "uint256[]",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "_fee",
+          type: "uint256",
+        },
+        {
+          internalType: "string",
+          name: "_id",
+          type: "string",
+        },
+        {
+          internalType: "string",
+          name: "_uri",
+          type: "string",
+        },
+      ],
+      name: "addNFT",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
       inputs: [
         {
           internalType: "address",
@@ -108,6 +304,51 @@ export const config = {
     {
       inputs: [
         {
+          internalType: "address",
+          name: "owner",
+          type: "address",
+        },
+      ],
+      name: "balanceOf",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "baseExtension",
+      outputs: [
+        {
+          internalType: "string",
+          name: "",
+          type: "string",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "baseURI",
+      outputs: [
+        {
+          internalType: "string",
+          name: "",
+          type: "string",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
           internalType: "uint256",
           name: "tokenId",
           type: "uint256",
@@ -119,30 +360,92 @@ export const config = {
       type: "function",
     },
     {
+      inputs: [
+        {
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
+      ],
+      name: "devFees",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "tokenId",
+          type: "uint256",
+        },
+      ],
+      name: "getApproved",
+      outputs: [
+        {
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      name: "goldBuyers",
+      outputs: [
+        {
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "owner",
+          type: "address",
+        },
+        {
+          internalType: "address",
+          name: "operator",
+          type: "address",
+        },
+      ],
+      name: "isApprovedForAll",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "",
+          type: "bool",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
       inputs: [],
       name: "lock",
       outputs: [],
       stateMutability: "nonpayable",
       type: "function",
-    },
-    {
-      anonymous: false,
-      inputs: [
-        {
-          indexed: true,
-          internalType: "address",
-          name: "_to",
-          type: "address",
-        },
-        {
-          indexed: true,
-          internalType: "uint256",
-          name: "_tokenId",
-          type: "uint256",
-        },
-      ],
-      name: "Migration",
-      type: "event",
     },
     {
       inputs: [
@@ -186,23 +489,78 @@ export const config = {
       type: "function",
     },
     {
-      anonymous: false,
+      inputs: [],
+      name: "name",
+      outputs: [
+        {
+          internalType: "string",
+          name: "",
+          type: "string",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
       inputs: [
         {
-          indexed: true,
-          internalType: "address",
-          name: "previousOwner",
-          type: "address",
+          internalType: "string",
+          name: "",
+          type: "string",
+        },
+      ],
+      name: "nfts",
+      outputs: [
+        {
+          internalType: "string",
+          name: "id",
+          type: "string",
         },
         {
-          indexed: true,
+          internalType: "uint256",
+          name: "fee",
+          type: "uint256",
+        },
+        {
+          internalType: "string",
+          name: "uri",
+          type: "string",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "owner",
+      outputs: [
+        {
           internalType: "address",
-          name: "newOwner",
+          name: "",
           type: "address",
         },
       ],
-      name: "OwnershipTransferred",
-      type: "event",
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "tokenId",
+          type: "uint256",
+        },
+      ],
+      name: "ownerOf",
+      outputs: [
+        {
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
     },
     {
       inputs: [],
@@ -212,17 +570,36 @@ export const config = {
       type: "function",
     },
     {
-      anonymous: false,
+      inputs: [],
+      name: "paused",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "",
+          type: "bool",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
       inputs: [
         {
-          indexed: false,
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      name: "platinumBuyers",
+      outputs: [
+        {
           internalType: "address",
-          name: "account",
+          name: "",
           type: "address",
         },
       ],
-      name: "Paused",
-      type: "event",
+      stateMutability: "view",
+      type: "function",
     },
     {
       inputs: [
@@ -242,6 +619,74 @@ export const config = {
       name: "renounceOwnership",
       outputs: [],
       stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "router",
+      outputs: [
+        {
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "royalty",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "royaltyAddress",
+      outputs: [
+        {
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "_salePrice",
+          type: "uint256",
+        },
+      ],
+      name: "royaltyInfo",
+      outputs: [
+        {
+          internalType: "address",
+          name: "_receiver",
+          type: "address",
+        },
+        {
+          internalType: "uint256",
+          name: "royaltyAmount",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
       type: "function",
     },
     {
@@ -397,565 +842,6 @@ export const config = {
       type: "function",
     },
     {
-      anonymous: false,
-      inputs: [
-        {
-          indexed: true,
-          internalType: "address",
-          name: "from",
-          type: "address",
-        },
-        {
-          indexed: true,
-          internalType: "address",
-          name: "to",
-          type: "address",
-        },
-        {
-          indexed: true,
-          internalType: "uint256",
-          name: "tokenId",
-          type: "uint256",
-        },
-      ],
-      name: "Transfer",
-      type: "event",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "from",
-          type: "address",
-        },
-        {
-          internalType: "address",
-          name: "to",
-          type: "address",
-        },
-        {
-          internalType: "uint256",
-          name: "tokenId",
-          type: "uint256",
-        },
-      ],
-      name: "transferFrom",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "newOwner",
-          type: "address",
-        },
-      ],
-      name: "transferOwnership",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      inputs: [],
-      name: "unlock",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      inputs: [],
-      name: "unpause",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      anonymous: false,
-      inputs: [
-        {
-          indexed: false,
-          internalType: "address",
-          name: "account",
-          type: "address",
-        },
-      ],
-      name: "Unpaused",
-      type: "event",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "_router",
-          type: "address",
-        },
-      ],
-      name: "updateRouter",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address[]",
-          name: "addressList",
-          type: "address[]",
-        },
-      ],
-      name: "whiteList",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      inputs: [],
-      name: "withdraw",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      anonymous: false,
-      inputs: [
-        {
-          indexed: true,
-          internalType: "address",
-          name: "devAddress",
-          type: "address",
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "amount",
-          type: "uint256",
-        },
-      ],
-      name: "WithdrawFees",
-      type: "event",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "_tokenContract",
-          type: "address",
-        },
-        {
-          internalType: "uint256[]",
-          name: "_id",
-          type: "uint256[]",
-        },
-      ],
-      name: "withdrawNFT",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "_tokenContract",
-          type: "address",
-        },
-      ],
-      name: "withdrawTokens",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      anonymous: false,
-      inputs: [
-        {
-          indexed: true,
-          internalType: "address",
-          name: "devAddress",
-          type: "address",
-        },
-        {
-          indexed: false,
-          internalType: "address",
-          name: "tokenAddress",
-          type: "address",
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "tokenId",
-          type: "uint256",
-        },
-      ],
-      name: "WithdrawWrongNfts",
-      type: "event",
-    },
-    {
-      anonymous: false,
-      inputs: [
-        {
-          indexed: true,
-          internalType: "address",
-          name: "devAddress",
-          type: "address",
-        },
-        {
-          indexed: false,
-          internalType: "address",
-          name: "tokenAddress",
-          type: "address",
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "amount",
-          type: "uint256",
-        },
-      ],
-      name: "WithdrawWrongTokens",
-      type: "event",
-    },
-    {
-      anonymous: false,
-      inputs: [
-        {
-          indexed: true,
-          internalType: "address",
-          name: "receiveraddress",
-          type: "address",
-        },
-        {
-          indexed: false,
-          internalType: "string",
-          name: "leaguename",
-          type: "string",
-        },
-      ],
-      name: "mintEvent",
-      type: "event",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "owner",
-          type: "address",
-        },
-      ],
-      name: "balanceOf",
-      outputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [],
-      name: "baseExtension",
-      outputs: [
-        {
-          internalType: "string",
-          name: "",
-          type: "string",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [],
-      name: "baseURI",
-      outputs: [
-        {
-          internalType: "string",
-          name: "",
-          type: "string",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "",
-          type: "address",
-        },
-      ],
-      name: "devFees",
-      outputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "tokenId",
-          type: "uint256",
-        },
-      ],
-      name: "getApproved",
-      outputs: [
-        {
-          internalType: "address",
-          name: "",
-          type: "address",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
-        },
-      ],
-      name: "goldBuyers",
-      outputs: [
-        {
-          internalType: "address",
-          name: "",
-          type: "address",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "owner",
-          type: "address",
-        },
-        {
-          internalType: "address",
-          name: "operator",
-          type: "address",
-        },
-      ],
-      name: "isApprovedForAll",
-      outputs: [
-        {
-          internalType: "bool",
-          name: "",
-          type: "bool",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [],
-      name: "name",
-      outputs: [
-        {
-          internalType: "string",
-          name: "",
-          type: "string",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "string",
-          name: "",
-          type: "string",
-        },
-      ],
-      name: "nfts",
-      outputs: [
-        {
-          internalType: "string",
-          name: "id",
-          type: "string",
-        },
-        {
-          internalType: "uint256",
-          name: "fee",
-          type: "uint256",
-        },
-        {
-          internalType: "string",
-          name: "uri",
-          type: "string",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "_owner",
-          type: "address",
-        },
-      ],
-      name: "Owned",
-      outputs: [
-        {
-          internalType: "uint256[]",
-          name: "",
-          type: "uint256[]",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [],
-      name: "owner",
-      outputs: [
-        {
-          internalType: "address",
-          name: "",
-          type: "address",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "tokenId",
-          type: "uint256",
-        },
-      ],
-      name: "ownerOf",
-      outputs: [
-        {
-          internalType: "address",
-          name: "",
-          type: "address",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [],
-      name: "paused",
-      outputs: [
-        {
-          internalType: "bool",
-          name: "",
-          type: "bool",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
-        },
-      ],
-      name: "platinumBuyers",
-      outputs: [
-        {
-          internalType: "address",
-          name: "",
-          type: "address",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [],
-      name: "router",
-      outputs: [
-        {
-          internalType: "address",
-          name: "",
-          type: "address",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [],
-      name: "royalty",
-      outputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [],
-      name: "royaltyAddress",
-      outputs: [
-        {
-          internalType: "address",
-          name: "",
-          type: "address",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
-        },
-        {
-          internalType: "uint256",
-          name: "_salePrice",
-          type: "uint256",
-        },
-      ],
-      name: "royaltyInfo",
-      outputs: [
-        {
-          internalType: "address",
-          name: "_receiver",
-          type: "address",
-        },
-        {
-          internalType: "uint256",
-          name: "royaltyAmount",
-          type: "uint256",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
       inputs: [
         {
           internalType: "bytes4",
@@ -1085,6 +971,82 @@ export const config = {
       inputs: [
         {
           internalType: "address",
+          name: "from",
+          type: "address",
+        },
+        {
+          internalType: "address",
+          name: "to",
+          type: "address",
+        },
+        {
+          internalType: "uint256",
+          name: "tokenId",
+          type: "uint256",
+        },
+      ],
+      name: "transferFrom",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "newOwner",
+          type: "address",
+        },
+      ],
+      name: "transferOwnership",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "unlock",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "unpause",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_router",
+          type: "address",
+        },
+      ],
+      name: "updateRouter",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address[]",
+          name: "addressList",
+          type: "address[]",
+        },
+      ],
+      name: "whiteList",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
           name: "",
           type: "address",
         },
@@ -1111,6 +1073,44 @@ export const config = {
         },
       ],
       stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "withdraw",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_tokenContract",
+          type: "address",
+        },
+        {
+          internalType: "uint256[]",
+          name: "_id",
+          type: "uint256[]",
+        },
+      ],
+      name: "withdrawNFT",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_tokenContract",
+          type: "address",
+        },
+      ],
+      name: "withdrawTokens",
+      outputs: [],
+      stateMutability: "nonpayable",
       type: "function",
     },
   ],

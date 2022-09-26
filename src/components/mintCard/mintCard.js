@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ethers } from "ethers";
+import { ethers, BigNumber } from "ethers";
 
 import styles from "./mintCard.module.css";
 import Loader from "../loader/loader";
@@ -8,31 +8,77 @@ import { notificationActions } from "../../store/notification/notification";
 import { config } from "../../config";
 
 const MintCard = ({ data }) => {
-  const { nftContract: mintContract, nftABI: abi } = config;
+  const {
+    nftContract: mintContract,
+    nftABI: abi,
+    USDCContract,
+    ERC20ABI,
+  } = config;
 
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [approve, setApprove] = useState(false);
 
-  const { connected } = useSelector(
+  const { connected, address } = useSelector(
     (state) => state.connection.connectionState
   );
 
   const { message } = useSelector((state) => state.notification);
 
-  const HandleMint = async (fee) => {
+  const checkApproved = async () => {
+    if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(USDCContract, ERC20ABI, signer);
+
+      try {
+        //debugger;
+        const response = await contract.allowance(address, mintContract);
+        const allowance = BigNumber.from(`${response._hex}`).toString();
+        allowance >= 100000 * 10 ** 18 ? setApprove(true) : setApprove(false);
+      } catch (error) {
+        console.log("error", error);
+      }
+    }
+  };
+
+  const handleApproval = async () => {
     if (window.ethereum) {
       setLoading(true);
 
-      const valueFee = {
-        value: ethers.utils.parseEther(`${fee}`),
-        gasLimit: 800000,
-      };
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(USDCContract, ERC20ABI, signer);
+
+      try {
+        //debugger;
+        const response = await contract.approve(
+          mintContract,
+          "100000000000000000000000000"
+        );
+        await response.wait();
+
+        setApprove(true);
+
+        setLoading(false);
+        dispatch(notificationActions.setMessage("Approval Completed"));
+      } catch (error) {
+        setLoading(false);
+        dispatch(notificationActions.setMessage(error.message));
+      }
+    }
+  };
+
+  const HandleMint = async () => {
+    if (window.ethereum) {
+      setLoading(true);
+
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(mintContract, abi, signer);
 
       try {
-        const response = await contract.mintNFT(data.id, valueFee);
+        const response = await contract.mintNFT(USDCContract, data._id);
         await response.wait();
 
         //send address to api to confirm, set timeout
@@ -45,6 +91,8 @@ const MintCard = ({ data }) => {
       }
     }
   };
+
+  checkApproved();
 
   useEffect(() => {
     dispatch(notificationActions.setPushMessage(message));
@@ -65,7 +113,7 @@ const MintCard = ({ data }) => {
       <div>
         <div>
           <p>Name:</p>
-          <span>{data.name}</span>
+          <span>{data.nftName}</span>
         </div>
         <div>
           <p>Cost:</p>
@@ -73,11 +121,19 @@ const MintCard = ({ data }) => {
         </div>
         <button
           onClick={() => {
-            HandleMint(data.cost);
+            approve ? HandleMint() : handleApproval();
           }}
           disabled={loading}
         >
-          {loading ? <Loader /> : connected ? "Mint" : "Connect Wallet"}
+          {loading ? (
+            <Loader />
+          ) : !connected ? (
+            "Connect Wallet"
+          ) : approve ? (
+            "Mint"
+          ) : (
+            "Approve"
+          )}
         </button>
       </div>
     </div>
