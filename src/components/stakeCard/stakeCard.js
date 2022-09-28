@@ -13,6 +13,7 @@ import {
   handleStakingApproval,
   handleGroundHogStakedBalance,
   checkApproved,
+  handleUSDCbalance,
 } from "./stakeHelpers";
 
 const StakeCard = () => {
@@ -26,13 +27,14 @@ const StakeCard = () => {
   const [approved, setApproved] = useState(false);
   const [availableHog, setAvailableHog] = useState(0);
   const [stakedHog, setStakedHog] = useState(0);
+  const [USDCBalance, setUSDCBalance] = useState(0);
 
   const { connected, address } = useSelector(
     (state) => state.connection.connectionState
   );
   const accountData = [
     { name: "GoundHog Balance", value: availableHog.length },
-    { name: "USDC Balance", value: 5000 },
+    { name: "USDC Balance", value: USDCBalance },
     { name: "Total Staked", value: stakedHog.length },
     { name: "Total USDC Claimed", value: 400 },
   ];
@@ -41,6 +43,7 @@ const StakeCard = () => {
     checkApproved(address, setApproved);
     handleGroundHogBalance(address, setAvailableHog);
     handleGroundHogStakedBalance(address, setStakedHog);
+    handleUSDCbalance(address, setUSDCBalance);
   }, [constractAction, address]);
 
   useEffect(() => {

@@ -1,9 +1,10 @@
-import { ethers } from "ethers";
+import { ethers, BigNumber } from "ethers";
 
 import { config } from "../../config";
 import { notificationActions } from "../../store/notification/notification";
 
-const { nftContract, stakeContract, nftABI, stakeABI } = config;
+const { nftContract, stakeContract, nftABI, stakeABI, USDCContract, ERC20ABI } =
+  config;
 
 export const handleStake = async (dispatch, availableHog, setLoading) => {
   if (Number(availableHog.length) < 1) {
@@ -73,6 +74,23 @@ export const checkApproved = async (address, setApproved) => {
       //debugger;
       const response = await contract.isApprovedForAll(address, stakeContract);
       response ? setApproved(true) : setApproved(false);
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+};
+
+export const handleUSDCbalance = async (address, setUSDCBalance) => {
+  if (window.ethereum) {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(USDCContract, ERC20ABI, signer);
+
+    try {
+      //debugger;
+      const response = await contract.balanceOf(address);
+      const balance = BigNumber.from(`${response._hex}`).toString();
+      setUSDCBalance(balance / 10 ** 18);
     } catch (error) {
       console.log("error", error);
     }
