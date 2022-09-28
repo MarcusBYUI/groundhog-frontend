@@ -3,11 +3,17 @@ import { useSelector } from "react-redux";
 
 import styles from "./StakedTable.module.css";
 import StakedRow from "./stakedRow/stakedRow";
+import { apiRequest } from "../../helpers/connections";
+import { useCallback } from "react";
 
 const StakedTable = () => {
   const { connected } = useSelector(
     (state) => state.connection.connectionState
   );
+
+  const { constractAction } = useSelector((state) => state.notification);
+
+  const authState = useSelector((state) => state.auth);
 
   const [staked, setStaked] = useState([]);
 
@@ -16,7 +22,7 @@ const StakedTable = () => {
       const result = [];
       data.forEach((item, index) => {
         const newItem = { ...item };
-        const stakedDate = new Date(item.staked);
+        const stakedDate = new Date(item.date);
         const today = new Date();
         const monthLastDay = new Date(
           today.getFullYear(),
@@ -27,58 +33,42 @@ const StakedTable = () => {
         newItem["next"] = monthLastDay.getTime();
 
         const sixMonthDate = new Date(date.setMonth(stakedDate.getMonth() + 5));
+        const unstakeDate = new Date(date.setDate(sixMonthDate.getDate() + 1));
 
-        newItem["unlock"] = sixMonthDate.getTime();
+        newItem["unlock"] = unstakeDate.getTime();
 
         result.push(newItem);
 
         result.length === index + 1 && resolve(result);
       });
     });
-
     setStaked(newData);
   };
 
-  useEffect(() => {
+  const getStaked = useCallback(async () => {
     if (connected) {
-      const stakedData = [
-        {
-          id: 0,
-          staked: "August 13, 2022",
-          paid: 300,
-        },
-        {
-          id: 1,
-          paid: 300,
-          staked: "August 13, 2022",
-        },
-        {
-          id: 2,
-          paid: 300,
-          staked: "August 13, 2022",
-        },
-        {
-          id: 3,
-          paid: 300,
-          staked: "August 13, 2022",
-        },
-        {
-          id: 4,
-          paid: 300,
-          staked: "August 13, 2022",
-        },
-        {
-          id: 5,
-          paid: 300,
-          staked: "August 13, 2022",
-        },
-      ];
-      handleStakedData(stakedData);
+      const data = await apiRequest(
+        "stake",
+        undefined,
+        undefined,
+        authState.loggedIn
+      );
+      handleStakedData(data.data);
     }
-  }, [connected]);
+  }, [connected, authState.loggedIn]);
+
+  useEffect(() => {
+    getStaked();
+  }, [connected, getStaked, constractAction]);
   return (
     <div className={styles.stakedContainer}>
-      {connected ? <StakedRow data={staked} /> : <h3>Not Connected</h3>}
+      {!connected ? (
+        <h3>Not Connected</h3>
+      ) : staked.length > 0 ? (
+        <StakedRow data={staked} />
+      ) : (
+        <h3>No Staked NFTs</h3>
+      )}
     </div>
   );
 };

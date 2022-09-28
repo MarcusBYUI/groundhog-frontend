@@ -37,12 +37,10 @@ export const handleStake = async (
           auth
         );
 
-        console.log(data);
-
         if (data.status === 200) {
           // update the front end bal before the blockchain data returns
           dispatch(notificationActions.setContractAction());
-          dispatch(notificationActions.setMessage("Stake-Successful"));
+          dispatch(notificationActions.setMessage("Stake Successful"));
           setLoading(false);
         }
         setLoading(false);
@@ -115,6 +113,43 @@ export const handleUSDCbalance = async (address, setUSDCBalance) => {
       setUSDCBalance(balance / 10 ** 18);
     } catch (error) {
       console.log("error", error);
+    }
+  }
+};
+
+export const handleUnStake = async (setLoading, id, auth, dispatch) => {
+  if (window.ethereum) {
+    setLoading(true);
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(stakeContract, stakeABI, signer);
+
+    try {
+      //debugger;
+      const response = await contract.unstake(id);
+
+      await response.wait();
+
+      //update stake
+
+      const data = await apiRequest(
+        "stake/unstake",
+        { stakeId: id },
+        "post",
+        auth
+      );
+
+      if (data.status === 200) {
+        dispatch(notificationActions.setContractAction());
+
+        dispatch(notificationActions.setMessage("UnStake Successful"));
+        setLoading(false);
+      }
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+
+      dispatch(notificationActions.setMessage(error.message));
     }
   }
 };

@@ -10,12 +10,15 @@ export async function apiRequest(
   let header = {};
   if (auth && auth.state)
     header = {
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-      },
+      Authorization: `Bearer ${auth.token}`,
     };
   try {
-    const response = await axios[method](BASEURL + path, body, header);
+    const response = await axios({
+      method: method,
+      url: BASEURL + path,
+      headers: header,
+      data: body,
+    });
     return response.data;
   } catch (error) {
     return error.response.data.error;
