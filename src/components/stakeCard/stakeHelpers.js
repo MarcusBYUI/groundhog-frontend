@@ -11,7 +11,8 @@ export const handleStake = async (
   dispatch,
   availableHog,
   setLoading,
-  address
+  address,
+  auth
 ) => {
   if (Number(availableHog.length) < 1) {
   } else {
@@ -29,13 +30,21 @@ export const handleStake = async (
 
         const stakeId = receipt.logs[3].topics[3];
 
-        const data = await apiRequest("stake", { address, stakeId }, "post");
+        const data = await apiRequest(
+          "stake",
+          { address, stakeId },
+          "post",
+          auth
+        );
 
         console.log(data);
 
-        // update the front end bal before the blockchain data returns
-        dispatch(notificationActions.setContractAction());
-        dispatch(notificationActions.setMessage("Stake Successful"));
+        if (data.status === 200) {
+          // update the front end bal before the blockchain data returns
+          dispatch(notificationActions.setContractAction());
+          dispatch(notificationActions.setMessage("Stake-Successful"));
+          setLoading(false);
+        }
         setLoading(false);
       } catch (error) {
         setLoading(false);

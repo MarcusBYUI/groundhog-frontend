@@ -1,7 +1,7 @@
 .headerGrid {
   padding: 15px 0;
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: 80px 1fr;
   align-items: center;
   user-select: none;
 }
@@ -15,11 +15,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  justify-self: end;
-}
-
-.headerGrid nav > div {
-  display: none;
+  justify-self: auto;
+  width: 100%;
 }
 
 .headerGrid nav > div ul {
@@ -27,7 +24,7 @@
 }
 
 .headerGrid nav > div ul li {
-  margin-right: 80px;
+  margin-right: 30px;
   list-style: none;
 }
 
@@ -35,7 +32,7 @@
 .headerGrid span {
   text-decoration: none;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 15px;
   z-index: 1;
   cursor: pointer;
 }
@@ -45,8 +42,8 @@
 }
 
 @media only screen and (min-width: 1080px) {
-  .headerGrid nav > div {
-    display: block;
+  .headerGrid {
+    grid-template-columns: 150px 1fr;
   }
   .headerGrid nav {
     justify-self: auto;
@@ -55,5 +52,9 @@
   .headerGrid a,
   .headerGrid span {
     font-size: 16px;
+  }
+
+  .headerGrid nav > div ul li {
+    margin-right: 80px;
   }
 }

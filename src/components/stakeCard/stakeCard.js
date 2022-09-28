@@ -24,6 +24,8 @@ const StakeCard = () => {
     (state) => state.notification
   );
 
+  const authState = useSelector((state) => state.auth);
+
   const [approved, setApproved] = useState(false);
   const [availableHog, setAvailableHog] = useState(0);
   const [stakedHog, setStakedHog] = useState(0);
@@ -75,7 +77,13 @@ const StakeCard = () => {
                 handleStakingApproval(dispatch, setLoading, setApproved);
               }
             : () => {
-                handleStake(dispatch, availableHog, setLoading);
+                handleStake(
+                  dispatch,
+                  availableHog,
+                  setLoading,
+                  address,
+                  authState.loggedIn
+                );
               }
         }
       >
