@@ -1,6 +1,6 @@
 export const config = {
-  nftContract: "0x1A46Dd62c4CC8639562E907E3718b099E05AD27E",
-  stakeContract: "0xBC40Db08b18a59f447A79A4Bd1BABe99b254513D",
+  nftContract: "0xFF8875b1CC56f17253eB3A2074586b17140db34e",
+  stakeContract: "0xf6f3971B0818a94531e77c7856f5F035896EF7De",
   USDCContract: "0xc8D92202245f08885ac08d412DC78a19E2f5Fd8C",
   nftABI: [
     {
@@ -277,6 +277,11 @@ export const config = {
           name: "_uri",
           type: "string",
         },
+        {
+          internalType: "uint256",
+          name: "_percentage",
+          type: "uint256",
+        },
       ],
       name: "addNFT",
       outputs: [],
@@ -400,25 +405,6 @@ export const config = {
     {
       inputs: [
         {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
-        },
-      ],
-      name: "goldBuyers",
-      outputs: [
-        {
-          internalType: "address",
-          name: "",
-          type: "address",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
           internalType: "address",
           name: "owner",
           type: "address",
@@ -526,6 +512,11 @@ export const config = {
           name: "uri",
           type: "string",
         },
+        {
+          internalType: "uint256",
+          name: "percentage",
+          type: "uint256",
+        },
       ],
       stateMutability: "view",
       type: "function",
@@ -577,25 +568,6 @@ export const config = {
           internalType: "bool",
           name: "",
           type: "bool",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
-        },
-      ],
-      name: "platinumBuyers",
-      outputs: [
-        {
-          internalType: "address",
-          name: "",
-          type: "address",
         },
       ],
       stateMutability: "view",
@@ -839,6 +811,25 @@ export const config = {
       name: "setURI",
       outputs: [],
       stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      name: "stakingROI",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
       type: "function",
     },
     {

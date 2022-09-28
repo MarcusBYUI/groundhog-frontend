@@ -2,11 +2,17 @@ import { ethers, BigNumber } from "ethers";
 
 import { config } from "../../config";
 import { notificationActions } from "../../store/notification/notification";
+import { apiRequest } from "../../helpers/connections";
 
 const { nftContract, stakeContract, nftABI, stakeABI, USDCContract, ERC20ABI } =
   config;
 
-export const handleStake = async (dispatch, availableHog, setLoading) => {
+export const handleStake = async (
+  dispatch,
+  availableHog,
+  setLoading,
+  address
+) => {
   if (Number(availableHog.length) < 1) {
   } else {
     if (window.ethereum) {
@@ -19,7 +25,14 @@ export const handleStake = async (dispatch, availableHog, setLoading) => {
         //debugger;
         const response = await contract.stake(nftContract, availableHog[0]);
 
-        await response.wait();
+        const receipt = await response.wait();
+
+        const stakeId = receipt.logs[3].topics[3];
+
+        const data = await apiRequest("stake", { address, stakeId }, "post");
+
+        console.log(data);
+
         // update the front end bal before the blockchain data returns
         dispatch(notificationActions.setContractAction());
         dispatch(notificationActions.setMessage("Stake Successful"));
