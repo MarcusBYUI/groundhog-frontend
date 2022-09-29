@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import OverLay from "../overLay/overLay";
 import styles from "./login.module.css";
 import { authSliceActions } from "../../store/auth/auth";
-import { notificationActions } from "../../store/notification/notification";
 import Loader from "../loader/loader";
 import { formHandler, resendVer } from "./helper";
 
@@ -17,7 +16,6 @@ const Login = () => {
   const [resent, setResent] = useState(false);
   const navigate = useNavigate();
 
-  const { message } = useSelector((state) => state.notification);
   const dispatch = useDispatch();
 
   const handleBackdropCLick = () => {
@@ -34,17 +32,6 @@ const Login = () => {
     dispatch(authSliceActions.setLoginPop(false));
   };
 
-  useEffect(() => {
-    dispatch(notificationActions.setPushMessage(message));
-
-    const timeout = setTimeout(() => {
-      dispatch(notificationActions.setMessage(""));
-    }, 4500);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [message, dispatch]);
   return (
     <>
       <OverLay closeHandler={handleBackdropCLick} />

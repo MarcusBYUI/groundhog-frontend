@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { notificationActions } from "../../../store/notification/notification";
 import CountdownTimer from "../../countdownTimer/countdownTimer";
 import Loader from "../../loader/loader";
 
@@ -28,25 +27,11 @@ const StakedRow = ({ data }) => {
 
   const [loading, setLoading] = useState(false);
 
-  const { message } = useSelector((state) => state.notification);
-
   const { connected } = useSelector(
     (state) => state.connection.connectionState
   );
 
   const authState = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    dispatch(notificationActions.setPushMessage(message));
-
-    const timeout = setTimeout(() => {
-      dispatch(notificationActions.setMessage(""));
-    }, 4500);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [message, dispatch]);
 
   const [userData, setUserData] = useState([]);
 

@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import OverLay from "../overLay/overLay";
 import styles from "./reset.module.css";
 import { authSliceActions } from "../../store/auth/auth";
-import { notificationActions } from "../../store/notification/notification";
 import Loader from "../loader/loader";
 import { formHandler, passwordReset } from "./helper";
 
@@ -14,7 +13,6 @@ const Reset = () => {
   //state that manages that verification was sent
   const [resent, setResent] = useState(false);
 
-  const { message } = useSelector((state) => state.notification);
   const dispatch = useDispatch();
 
   const handleBackdropCLick = () => {
@@ -26,17 +24,6 @@ const Reset = () => {
     dispatch(authSliceActions.SetSignupPop(true));
   };
 
-  useEffect(() => {
-    dispatch(notificationActions.setPushMessage(message));
-
-    const timeout = setTimeout(() => {
-      dispatch(notificationActions.setMessage(""));
-    }, 4500);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [message, dispatch]);
   return (
     <>
       <OverLay closeHandler={handleBackdropCLick} />

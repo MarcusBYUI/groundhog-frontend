@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../../../components/loader/loader";
 
 import OverLay from "../../../../../components/overLay/overLay";
 import { authSliceActions } from "../../../../../store/auth/auth";
-import { notificationActions } from "../../../../../store/notification/notification";
 import styles from "./addNFT.module.css";
 import { handleSubmission as submissionHelper } from "./helpers";
 
@@ -18,8 +17,6 @@ const AddNFT = () => {
   });
 
   const authState = useSelector((state) => state.auth);
-
-  const { message } = useSelector((state) => state.notification);
 
   const handleBackdropCLick = () => {
     dispatch(authSliceActions.SetAdminPop(false));
@@ -38,17 +35,6 @@ const AddNFT = () => {
     );
   };
 
-  useEffect(() => {
-    dispatch(notificationActions.setPushMessage(message));
-
-    const timeout = setTimeout(() => {
-      dispatch(notificationActions.setMessage(""));
-    }, 4500);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [message, dispatch]);
   return (
     <>
       <OverLay closeHandler={handleBackdropCLick} />

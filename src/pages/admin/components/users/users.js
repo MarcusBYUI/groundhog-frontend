@@ -1,14 +1,35 @@
 import React, { useState, useEffect } from "react";
 import AppPagination from "../../../../components/pagination/pagination";
 
+import { notificationActions } from "../../../../store/notification/notification";
+
 import styles from "./users.module.css";
 import { apiRequest } from "../../../../helpers/connections";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const Users = () => {
   const authState = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const { constractAction } = useSelector((state) => state.notification);
 
   const [fetchedData, setFetchedData] = useState([]);
+
+  const deleteUser = async (id) => {
+    const data = await apiRequest(
+      "user/" + id,
+      undefined,
+      "delete",
+      authState.loggedIn
+    );
+    if (data.status === 200) {
+      dispatch(notificationActions.setContractAction());
+
+      dispatch(notificationActions.setMessage("Delete Successful"));
+    } else {
+      dispatch(notificationActions.setMessage("An error occured"));
+    }
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -21,7 +42,7 @@ const Users = () => {
       setFetchedData(data);
     };
     getData();
-  }, [authState.loggedIn]);
+  }, [authState.loggedIn, constractAction]);
   const [userData, setUserData] = useState([]);
   return (
     <>
@@ -41,7 +62,7 @@ const Users = () => {
           userData.map((item, index) => {
             if (item.level === "user")
               return (
-                <div key={item.id + index}>
+                <div key={item._id}>
                   <div className={styles.Row}>
                     <span>{item.address}</span>
                     <span>{item.fullname}</span>
@@ -49,6 +70,7 @@ const Users = () => {
                     <span>{item.haddress}</span>
                     <span>{item.phone}</span>
                     <img
+                      onClick={() => deleteUser(item._id)}
                       src={require("../../../../assets/delete.png")}
                       alt="delete"
                     />
@@ -56,7 +78,7 @@ const Users = () => {
                   <hr />
                 </div>
               );
-            else return <></>;
+            else return <div key={1}></div>;
           })}
       </div>
       <div className={styles.paginationContainer}>

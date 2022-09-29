@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from "./stakeCard.module.css";
 import Card from "../card/card";
 import AccountDetailsGrid from "./accountDetailsGrid/accountDetailsGrid";
-import { notificationActions } from "../../store/notification/notification";
 import Loader from "../loader/loader";
 
 import {
@@ -21,9 +20,7 @@ const StakeCard = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
-  const { message, constractAction } = useSelector(
-    (state) => state.notification
-  );
+  const { constractAction } = useSelector((state) => state.notification);
 
   const authState = useSelector((state) => state.auth);
 
@@ -51,18 +48,6 @@ const StakeCard = () => {
     handleUSDCbalance(address, setUSDCBalance);
     userData(authState.loggedIn, setUser);
   }, [constractAction, address, authState.loggedIn]);
-
-  useEffect(() => {
-    dispatch(notificationActions.setPushMessage(message));
-
-    const timeout = setTimeout(() => {
-      dispatch(notificationActions.setMessage(""));
-    }, 4500);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [message, dispatch]);
 
   return (
     <div className={styles.stakeCard}>

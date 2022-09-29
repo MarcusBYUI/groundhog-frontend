@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ethers, BigNumber } from "ethers";
 
@@ -22,8 +22,6 @@ const MintCard = ({ data }) => {
   const { connected, address } = useSelector(
     (state) => state.connection.connectionState
   );
-
-  const { message } = useSelector((state) => state.notification);
 
   const checkApproved = async () => {
     if (window.ethereum) {
@@ -93,18 +91,6 @@ const MintCard = ({ data }) => {
   };
 
   checkApproved();
-
-  useEffect(() => {
-    dispatch(notificationActions.setPushMessage(message));
-
-    const timeout = setTimeout(() => {
-      dispatch(notificationActions.setMessage(""));
-    }, 4500);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [message, dispatch]);
 
   return (
     <div className={styles.mintCard}>

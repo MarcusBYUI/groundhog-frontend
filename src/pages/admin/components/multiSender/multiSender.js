@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Loader from "../../../../components/loader/loader";
-import { notificationActions } from "../../../../store/notification/notification";
 import styles from "./multiSender.module.css";
 import {
   handleMultisending,
@@ -37,18 +36,6 @@ const MultiSender = () => {
   useEffect(() => {
     checkApproved(address, setApproved);
   }, [address, message]);
-
-  useEffect(() => {
-    dispatch(notificationActions.setPushMessage(message));
-
-    const timeout = setTimeout(() => {
-      dispatch(notificationActions.setMessage(""));
-    }, 4500);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [message, dispatch]);
 
   return (
     <form onSubmit={onSubmission} className={styles.multiSenderForm}>
