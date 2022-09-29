@@ -77,6 +77,11 @@
   cursor: pointer;
 }
 
+.paginationContainer {
+  margin-top: 15px;
+  padding-bottom: 15px;
+}
+
 @media only screen and (min-width: 1080px) {
   .Header p {
     margin: 15px 0;

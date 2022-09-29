@@ -33,38 +33,42 @@ const Nfts = () => {
   }, [authState.adminPop]);
   const [userData, setUserData] = useState(null);
   return (
-    <div className={styles.userContainer}>
-      <div>
-        <div className={styles.Header}>
-          <p>Name</p>
-          <p>Cost</p>
-          <p>Percentage</p>
-          <p>Action</p>
+    <>
+      <div className={styles.userContainer}>
+        <div>
+          <div className={styles.Header}>
+            <p>Name</p>
+            <p>Cost</p>
+            <p>Percentage</p>
+            <p>Action</p>
+          </div>
+          <hr />
         </div>
-        <hr />
-      </div>
-      {userData &&
-        userData.map((item) => {
-          return (
-            <div key={item._id}>
-              <div className={styles.Row}>
-                <span>{item.nftName}</span>
-                <span>{item.cost}</span>
-                <span>{item.percentage}%</span>
-                <img
-                  onClick={() => {
-                    deleteNFT(item._id);
-                  }}
-                  src={require("../../../../assets/delete.png")}
-                  alt="delete"
-                />
+        {userData &&
+          userData.map((item) => {
+            return (
+              <div key={item._id}>
+                <div className={styles.Row}>
+                  <span>{item.nftName}</span>
+                  <span>{item.cost}</span>
+                  <span>{item.percentage}%</span>
+                  <img
+                    onClick={() => {
+                      deleteNFT(item._id);
+                    }}
+                    src={require("../../../../assets/delete.png")}
+                    alt="delete"
+                  />
+                </div>
+                <hr />
               </div>
-              <hr />
-            </div>
-          );
-        })}
-      <AppPagination callback={setUserData} rawData={rawData} />
-    </div>
+            );
+          })}
+      </div>
+      <div className={styles.paginationContainer}>
+        <AppPagination callback={setUserData} rawData={rawData} />
+      </div>
+    </>
   );
 };
 

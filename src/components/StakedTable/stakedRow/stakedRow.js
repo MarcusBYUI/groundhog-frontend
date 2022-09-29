@@ -6,6 +6,7 @@ import Loader from "../../loader/loader";
 
 import styles from "./stakedRow.module.css";
 import { handleUnStake } from "../../stakeCard/stakeHelpers";
+import AppPagination from "../../pagination/pagination";
 
 const StakedRow = ({ data }) => {
   const months = [
@@ -47,55 +48,62 @@ const StakedRow = ({ data }) => {
     };
   }, [message, dispatch]);
 
+  const [userData, setUserData] = useState([]);
+
   return (
     <>
-      <>
-        <div className={styles.stakedHeader}>
-          <p>Stake date</p>
-          <p>Total Paid</p>
-          <p>Next Payment in</p>
-          <p>Unlock Date</p>
-          <p>Action</p>
-        </div>
-        <hr />
-      </>
-      {data.map((item) => {
-        const disabled = item.unlock > new Date().getTime();
-        const d = new Date(item.date);
-        const date = `${
-          months[d.getMonth()]
-        } ${d.getDate()}, ${d.getFullYear()}`;
-        return (
-          <div key={item._id}>
-            <div className={styles.stakedRow}>
-              <span>{date}</span>
-              <span>{item.totalPaid} USDC</span>
-              <CountdownTimer time={item.next} />
-              <CountdownTimer time={item.unlock} />
-              <button
-                onClick={() =>
-                  handleUnStake(
-                    setLoading,
-                    item.stakeId,
-                    authState.loggedIn,
-                    dispatch
-                  )
-                }
-                disabled={disabled && loading}
-              >
-                {loading ? (
-                  <Loader />
-                ) : !connected ? (
-                  "Connect Wallet"
-                ) : (
-                  "Unstake"
-                )}
-              </button>
-            </div>
-            <hr />
+      <div className={styles.userContainer}>
+        <>
+          <div className={styles.stakedHeader}>
+            <p>Stake date</p>
+            <p>Total Paid</p>
+            <p>Next Payment in</p>
+            <p>Unlock Date</p>
+            <p>Action</p>
           </div>
-        );
-      })}
+          <hr />
+        </>
+        {userData.map((item) => {
+          const disabled = item.unlock > new Date().getTime();
+          const d = new Date(item.date);
+          const date = `${
+            months[d.getMonth()]
+          } ${d.getDate()}, ${d.getFullYear()}`;
+          return (
+            <div key={item._id}>
+              <div className={styles.stakedRow}>
+                <span>{date}</span>
+                <span>{item.totalPaid} USDC</span>
+                <CountdownTimer time={item.next} />
+                <CountdownTimer time={item.unlock} />
+                <button
+                  onClick={() =>
+                    handleUnStake(
+                      setLoading,
+                      item.stakeId,
+                      authState.loggedIn,
+                      dispatch
+                    )
+                  }
+                  disabled={disabled && loading}
+                >
+                  {loading ? (
+                    <Loader />
+                  ) : !connected ? (
+                    "Connect Wallet"
+                  ) : (
+                    "Unstake"
+                  )}
+                </button>
+              </div>
+              <hr />
+            </div>
+          );
+        })}
+      </div>
+      <div className={styles.paginationContainer}>
+        <AppPagination callback={setUserData} rawData={data} />
+      </div>
     </>
   );
 };

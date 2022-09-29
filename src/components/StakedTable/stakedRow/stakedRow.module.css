@@ -1,9 +1,10 @@
 .stakedHeader,
 .stakedRow {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: 150px 150px 150px 150px 150px;
   align-items: center;
   justify-items: center;
+  width: max-content;
 }
 
 .stakedHeader p {
@@ -50,11 +51,46 @@
   color: white;
 }
 
-@media only screen and (min-width: 1080px) {
+.userContainer {
+  padding: 35px;
+  overflow-x: scroll;
+}
+
+.userContainer::-webkit-scrollbar {
+  height: 10px;
+}
+
+.userContainer::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+.userContainer::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #cf754a 0%, #d89b5a 100%);
+  outline: none;
+}
+.userContainer hr {
+  width: 780px;
+}
+
+.paginationContainer {
+  margin-top: 15px;
+  padding-bottom: 15px;
+}
+
+@media only screen and (min-width: 1030px) {
   .stakedHeader p {
     margin: 15px 0;
   }
   .stakedRow > * {
     margin: 0;
+  }
+
+  .stakedHeader,
+  .stakedRow {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    width: 100%;
+  }
+  .userContainer hr {
+    width: 100%;
   }
 }

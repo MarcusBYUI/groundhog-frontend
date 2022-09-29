@@ -22,43 +22,47 @@ const Users = () => {
     };
     getData();
   }, [authState.loggedIn]);
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState([]);
   return (
-    <div className={styles.userContainer}>
-      <div>
-        <div className={styles.Header}>
-          <p>Address</p>
-          <p>Name</p>
-          <p>Email</p>
-          <p>Home</p>
-          <p>Phone</p>
-          <p>Action</p>
+    <>
+      <div className={styles.userContainer}>
+        <div>
+          <div className={styles.Header}>
+            <p>Address</p>
+            <p>Name</p>
+            <p>Email</p>
+            <p>Home</p>
+            <p>Phone</p>
+            <p>Action</p>
+          </div>
+          <hr />
         </div>
-        <hr />
-      </div>
-      {userData &&
-        userData.map((item, index) => {
-          if (item.level === "user")
-            return (
-              <div key={item.id + index}>
-                <div className={styles.Row}>
-                  <span>{item.address}</span>
-                  <span>{item.fullname}</span>
-                  <span>{item.email}</span>
-                  <span>{item.haddress}</span>
-                  <span>{item.phone}</span>
-                  <img
-                    src={require("../../../../assets/delete.png")}
-                    alt="delete"
-                  />
+        {userData &&
+          userData.map((item, index) => {
+            if (item.level === "user")
+              return (
+                <div key={item.id + index}>
+                  <div className={styles.Row}>
+                    <span>{item.address}</span>
+                    <span>{item.fullname}</span>
+                    <span>{item.email}</span>
+                    <span>{item.haddress}</span>
+                    <span>{item.phone}</span>
+                    <img
+                      src={require("../../../../assets/delete.png")}
+                      alt="delete"
+                    />
+                  </div>
+                  <hr />
                 </div>
-                <hr />
-              </div>
-            );
-          else return <></>;
-        })}
-      <AppPagination callback={setUserData} rawData={fetchedData} />
-    </div>
+              );
+            else return <></>;
+          })}
+      </div>
+      <div className={styles.paginationContainer}>
+        <AppPagination callback={setUserData} rawData={fetchedData} />
+      </div>
+    </>
   );
 };
 
