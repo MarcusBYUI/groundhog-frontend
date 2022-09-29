@@ -1,9 +1,10 @@
 .Header,
 .Row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: 340px 200px 200px 300px 130px 180px;
   align-items: center;
   justify-items: center;
+  width: max-content;
 }
 
 .Header p {
@@ -52,6 +53,23 @@
 
 .userContainer {
   padding: 35px;
+  overflow-x: scroll;
+}
+
+.userContainer::-webkit-scrollbar {
+  height: 10px;
+}
+
+.userContainer::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+.userContainer::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #cf754a 0%, #d89b5a 100%);
+  outline: none;
+}
+.userContainer hr {
+  width: calc(340px + 200px + 200px + 300px + 280px);
 }
 
 .Row img {

@@ -14,6 +14,7 @@ import {
   handleGroundHogStakedBalance,
   checkApproved,
   handleUSDCbalance,
+  userData,
 } from "./stakeHelpers";
 
 const StakeCard = () => {
@@ -30,6 +31,7 @@ const StakeCard = () => {
   const [availableHog, setAvailableHog] = useState(0);
   const [stakedHog, setStakedHog] = useState(0);
   const [USDCBalance, setUSDCBalance] = useState(0);
+  const [user, setUser] = useState({});
 
   const { connected, address } = useSelector(
     (state) => state.connection.connectionState
@@ -38,7 +40,8 @@ const StakeCard = () => {
     { name: "GoundHog Balance", value: availableHog.length },
     { name: "USDC Balance", value: USDCBalance },
     { name: "Total Staked", value: stakedHog.length },
-    { name: "Total USDC Claimed", value: 400 },
+    { name: "Pending USDC ", value: user.totalPaid || 0 },
+    { name: "Total USDC Claimed", value: user.pendingPaid || 0 },
   ];
 
   useEffect(() => {
@@ -46,7 +49,8 @@ const StakeCard = () => {
     handleGroundHogBalance(address, setAvailableHog);
     handleGroundHogStakedBalance(address, setStakedHog);
     handleUSDCbalance(address, setUSDCBalance);
-  }, [constractAction, address]);
+    userData(authState.loggedIn, setUser);
+  }, [constractAction, address, authState.loggedIn]);
 
   useEffect(() => {
     dispatch(notificationActions.setPushMessage(message));

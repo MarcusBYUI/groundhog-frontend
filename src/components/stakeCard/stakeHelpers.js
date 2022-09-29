@@ -155,6 +155,11 @@ export const handleUnStake = async (setLoading, id, auth, dispatch) => {
   }
 };
 
+export const userData = async (auth, setUser) => {
+  const data = await apiRequest("user", undefined, undefined, auth);
+  setUser(data);
+};
+
 export const handleStakingApproval = async (
   dispatch,
   setLoading,
