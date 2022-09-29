@@ -52,6 +52,7 @@ export const handleStake = async (
     }
   }
 };
+
 export const handleGroundHogBalance = async (address, setAvailableHog) => {
   if (window.ethereum) {
     const provider = new ethers.providers.Web3Provider(window.ethereum);

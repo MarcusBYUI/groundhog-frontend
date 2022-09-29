@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./StakedTable.module.css";
 import StakedRow from "./stakedRow/stakedRow";
@@ -53,7 +53,8 @@ const StakedTable = () => {
         undefined,
         authState.loggedIn
       );
-      handleStakedData(data.data);
+      if (data.data.length > 0) await handleStakedData(data.data);
+      else setStaked([]);
     }
   }, [connected, authState.loggedIn]);
 
