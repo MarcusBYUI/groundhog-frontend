@@ -59,26 +59,28 @@ const Users = () => {
           <hr />
         </div>
         {userData &&
-          userData.map((item, index) => {
-            if (item.level === "user")
-              return (
-                <div key={item._id}>
-                  <div className={styles.Row}>
-                    <span>{item.address}</span>
-                    <span>{item.fullname}</span>
-                    <span>{item.email}</span>
-                    <span>{item.haddress}</span>
-                    <span>{item.phone}</span>
-                    <img
-                      onClick={() => deleteUser(item._id)}
-                      src={require("../../../../assets/delete.png")}
-                      alt="delete"
-                    />
-                  </div>
-                  <hr />
-                </div>
-              );
-            else return <div key={1}></div>;
+          userData.map((item) => {
+            return (
+              <div key={item._id}>
+                {item.level === "user" && (
+                  <>
+                    <div className={styles.Row}>
+                      <span>{item.address}</span>
+                      <span>{item.fullname}</span>
+                      <span>{item.email}</span>
+                      <span>{item.haddress}</span>
+                      <span>{item.phone}</span>
+                      <img
+                        onClick={() => deleteUser(item._id)}
+                        src={require("../../../../assets/delete.png")}
+                        alt="delete"
+                      />
+                    </div>
+                    <hr />
+                  </>
+                )}
+              </div>
+            );
           })}
       </div>
       <div className={styles.paginationContainer}>

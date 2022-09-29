@@ -56,23 +56,25 @@ const PaymentDue = () => {
           <hr />
         </div>
         {userData &&
-          userData.map((item, index) => {
-            if (item.pendingPaid > 0)
-              return (
-                <div key={item._id}>
-                  <div className={styles.Row}>
-                    <span>{item.address}</span>
-                    <span>{item.pendingPaid}</span>
-                    <img
-                      onClick={() => updateUser(item._id, item.pendingPaid)}
-                      src={require("../../../../assets/paid.png")}
-                      alt="delete"
-                    />
-                  </div>
-                  <hr />
-                </div>
-              );
-            else return <div key={1}></div>;
+          userData.map((item) => {
+            return (
+              <div key={item._id}>
+                {item.pendingPaid > 0 && (
+                  <>
+                    <div className={styles.Row}>
+                      <span>{item.address}</span>
+                      <span>{item.pendingPaid}</span>
+                      <img
+                        onClick={() => updateUser(item._id, item.pendingPaid)}
+                        src={require("../../../../assets/paid.png")}
+                        alt="delete"
+                      />
+                    </div>
+                    <hr />
+                  </>
+                )}
+              </div>
+            );
           })}
       </div>
       <div className={styles.paginationContainer}>
