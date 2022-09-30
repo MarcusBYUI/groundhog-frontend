@@ -35,7 +35,7 @@ export const formHandler = async (
         auth.token = data.token;
         auth.user = data.user;
         dispatch(authSliceActions.setLoggedIn(auth));
-        setLocalStorage("expiry", new Date().getTime() + 60000);
+        setLocalStorage("expiry", new Date().getTime() + 3600000);
         dispatch(notificationActions.setMessage("Login Successful"));
         setLoading(false);
 
