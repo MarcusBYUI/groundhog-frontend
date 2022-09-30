@@ -41,7 +41,6 @@ const StakedRow = ({ data }) => {
         <>
           <div className={styles.stakedHeader}>
             <p>Stake date</p>
-            <p>Total Paid</p>
             <p>Next Payment in</p>
             <p>Unlock Date</p>
             <p>Action</p>
@@ -58,7 +57,6 @@ const StakedRow = ({ data }) => {
             <div key={item._id}>
               <div className={styles.stakedRow}>
                 <span>{date}</span>
-                <span>{item.totalPaid} USDC</span>
                 <CountdownTimer time={item.next} />
                 <CountdownTimer time={item.unlock} />
                 <button

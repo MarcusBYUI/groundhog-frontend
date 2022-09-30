@@ -35,10 +35,10 @@ const StakeCard = () => {
   );
   const accountData = [
     { name: "GoundHog Balance", value: availableHog.length },
-    { name: "USDC Balance", value: USDCBalance },
+    { name: "USDC Balance", value: Math.floor(USDCBalance) },
     { name: "Total Staked", value: stakedHog.length },
-    { name: "Pending USDC ", value: user.totalPaid || 0 },
-    { name: "Total USDC Claimed", value: user.pendingPaid || 0 },
+    { name: "Pending USDC ", value: user.pendingPaid || 0 },
+    { name: "Total USDC Claimed", value: user.totalPaid || 0 },
   ];
 
   useEffect(() => {

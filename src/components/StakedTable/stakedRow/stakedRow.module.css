@@ -1,7 +1,7 @@
 .stakedHeader,
 .stakedRow {
   display: grid;
-  grid-template-columns: 150px 150px 150px 150px 150px;
+  grid-template-columns: 150px 150px 150px 150px;
   align-items: center;
   justify-items: center;
   width: max-content;
@@ -69,7 +69,7 @@
   outline: none;
 }
 .userContainer hr {
-  width: 780px;
+  width: 630px;
 }
 
 .paginationContainer {

@@ -24,12 +24,19 @@ const StakedTable = () => {
         const newItem = { ...item };
         const stakedDate = new Date(item.date);
         const today = new Date();
-        const monthLastDay = new Date(
-          today.getFullYear(),
-          today.getMonth() + 1,
-          0
-        );
+        let monthLastDay;
+
+        if (stakedDate.getMonth() === today.getMonth()) {
+          monthLastDay = new Date(
+            stakedDate.getFullYear(),
+            stakedDate.getMonth() + 2,
+            1
+          );
+        } else {
+          monthLastDay = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+        }
         const date = new Date();
+
         newItem["next"] = monthLastDay.getTime();
 
         const sixMonthDate = new Date(date.setMonth(stakedDate.getMonth() + 5));
