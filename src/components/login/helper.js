@@ -1,6 +1,7 @@
 import { apiRequest } from "../../helpers/connections";
 import { authSliceActions } from "../../store/auth/auth";
 import { notificationActions } from "../../store/notification/notification";
+import { setLocalStorage } from "../../helpers/utils";
 
 export const formHandler = async (
   e,
@@ -34,6 +35,7 @@ export const formHandler = async (
         auth.token = data.token;
         auth.user = data.user;
         dispatch(authSliceActions.setLoggedIn(auth));
+        setLocalStorage("expiry", new Date().getTime() + 60000);
         dispatch(notificationActions.setMessage("Login Successful"));
         setLoading(false);
 

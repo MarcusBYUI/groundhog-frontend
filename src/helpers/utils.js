@@ -1,5 +1,12 @@
 export const getFromLocalStorage = (key) => {
-  return JSON.parse(localStorage.getItem(key));
+  const expiry = JSON.parse(localStorage.getItem("expiry"));
+  if (new Date().getTime() > expiry) {
+    localStorage.removeItem("connection");
+    localStorage.removeItem("authState");
+    return false;
+  } else {
+    return JSON.parse(localStorage.getItem(key));
+  }
 };
 
 export const setLocalStorage = (key, value) => {

@@ -33,7 +33,10 @@ const ConnectButton = () => {
 
     //set connection state
     dispatch(
-      connectionActions.setConnection({ connected: true, address: accounts[0] })
+      connectionActions.setConnection({
+        connected: true,
+        address: accounts[0],
+      })
     );
   };
 
