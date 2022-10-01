@@ -18,7 +18,7 @@ const PaymentsHistory = () => {
 
     const response = await axios({
       method: "post",
-      url: "http://localhost:3001/user/payments",
+      url: "https://api.gophermines.com/user/payments",
       headers: {
         Authorization: `Bearer ${authState.loggedIn.token}`,
       },
