@@ -43,6 +43,13 @@
       "react-app/jest"
     ]
   },
+  "reactSnap": {
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "puppeteerExecutablePath": "/opt/google/chrome/google-chrome"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
