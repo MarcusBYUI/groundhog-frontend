@@ -1,6 +1,6 @@
 export const config = {
-  nftContract: "0xF1cfd169cD19535c3591628BB1CDbfA94C246758",
-  stakeContract: "0xf6f3971B0818a94531e77c7856f5F035896EF7De",
+  nftContract: "0xBd83047ce6fd955CADA04bCB6e32ee1318Ea5669",
+  stakeContract: "0x2CD182E46D667Ff33C40331f3C5bc1D704D875ED",
   USDCContract: "0xc8D92202245f08885ac08d412DC78a19E2f5Fd8C",
   nftABI: [
     {
