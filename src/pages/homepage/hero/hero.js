@@ -9,13 +9,13 @@ const Hero = () => {
       <SectionWidth>
         <div className={styles.heroGrid}>
           <div className={styles.heroTexts}>
-            <h1>GroundHog Mining</h1>
+            <h1>Gopher Mines</h1>
             <p>
               Mint GroundHog NFTs Mint GroundHog NFTs Mint GroundHog NFTsMint
               GroundHog NFTsMint GroundHog NFTsMint GroundHog NFTs
             </p>
             <div className={styles.detailGrid}>
-              <p>Mint GroundHog NFTs</p>
+              <p>Mint Gopher NFTs</p>
               <lottie-player
                 src="https://lottie.host/4e515e4c-34f6-4fa4-9d1f-ef6539c0f86d/kC76FKZ4Ls.json"
                 background="transparent"

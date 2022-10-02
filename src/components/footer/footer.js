@@ -18,7 +18,7 @@ const Footer = () => {
         <footer>
           <SectionWidth>
             <div className={styles.footer}>
-              <h4>All rights Reserved. © {year} GroundHog Mining.</h4>
+              <h4>All rights Reserved. © {year} GopherMines.com.</h4>
               <div>
                 <h4>Links</h4>
                 <a
