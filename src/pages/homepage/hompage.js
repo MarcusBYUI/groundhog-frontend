@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 
 import Header from "../../components/header/header";
 import Hero from "./hero/hero";
-'import MintSection from "./mintSection/mintSection";
-'import StakingSection from "./stakingSection/stakingSection";
+import MintSection from "./mintSection/mintSection";
+import StakingSection from "./stakingSection/stakingSection";
 import Footer from "../../components/footer/footer";
 import Login from "../../components/login/login";
 import Signup from "../../components/signup/signup";
