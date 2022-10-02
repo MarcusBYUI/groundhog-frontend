@@ -11,7 +11,7 @@ const Hero = () => {
           <div className={styles.heroTexts}>
             <h1>Gopher Mines</h1>
             <p>
-              Mint GroundHog NFTs Mint GroundHog NFTs Mint GroundHog NFTsMint
+              Mint Gopher NFTs Mint GroundHog NFTs Mint GroundHog NFTsMint
               GroundHog NFTsMint GroundHog NFTsMint GroundHog NFTs
             </p>
             <div className={styles.detailGrid}>
