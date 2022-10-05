@@ -37,7 +37,7 @@ const Login = () => {
       <OverLay closeHandler={handleBackdropCLick} />
       <div className={styles.loginPop}>
         <i onClick={handleBackdropCLick} className="fa-solid fa-xmark"></i>
-        <h2>GroundHog Login</h2>
+        <h2>Gopher Mines Login</h2>
         <p>Login to gain minting and staking access</p>
         {resendVerification ? (
           <div className={styles.resend}>

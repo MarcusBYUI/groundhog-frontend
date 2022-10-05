@@ -29,7 +29,7 @@ const Reset = () => {
       <OverLay closeHandler={handleBackdropCLick} />
       <div className={styles.loginPop}>
         <i onClick={handleBackdropCLick} className="fa-solid fa-xmark"></i>
-        <h2>GroundHog Reset</h2>
+        <h2>Gopher Mines Reset</h2>
         <p>Reset your password to gain log in access</p>
         {codeSent ? (
           <form
