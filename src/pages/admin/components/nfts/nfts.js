@@ -51,7 +51,7 @@ const Nfts = () => {
                 <div className={styles.Row}>
                   <span>{item.nftName}</span>
                   <span>{item.cost}</span>
-                  <span>{item.percentage}%</span>
+                  <span>{item.percentage * 12}%</span>
                   <img
                     onClick={() => {
                       deleteNFT(item._id);

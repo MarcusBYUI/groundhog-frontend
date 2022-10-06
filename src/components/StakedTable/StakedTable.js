@@ -22,12 +22,18 @@ const StakedTable = () => {
       const result = [];
       data.forEach((item, index) => {
         const newItem = { ...item };
-        const today = new Date();
+        const today = new Date(item.lastPayment);
 
+        // const monthLastDay = new Date(
+        //   today.getFullYear(),
+        //   today.getMonth() + 1,
+        //   0
+        // );
         const monthLastDay = new Date(
           today.getFullYear(),
-          today.getMonth() + 1,
-          0
+          today.getMonth(),
+          today.getDate(),
+          today.getHours() + 1
         );
         newItem["next"] = monthLastDay.getTime();
 
