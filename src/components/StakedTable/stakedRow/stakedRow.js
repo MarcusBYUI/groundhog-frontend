@@ -68,7 +68,7 @@ const StakedRow = ({ data }) => {
                       dispatch
                     )
                   }
-                  disabled={disabled && loading}
+                  disabled={disabled || loading}
                 >
                   {loading ? (
                     <Loader />
