@@ -21,10 +21,30 @@ export const handleStake = async (
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(stakeContract, stakeABI, signer);
+      const NFTcontract = new ethers.Contract(nftContract, nftABI, signer);
 
       try {
         //debugger;
-        const response = await contract.stake(nftContract, availableHog[0]);
+        //get id of the nft
+        const nftResponse = await NFTcontract.tokenIdToNFTId(availableHog[0]);
+        //get stake duration
+        const stakeDuration = await contract.nftIdToDUration(nftResponse);
+        //calculate duration from now
+        const today = new Date();
+        const date = new Date();
+
+        const stakedurStamp = new Date(
+          date.setMonth(
+            today.getMonth() +
+              (BigNumber.from(`${stakeDuration._hex}`).toString() - 1)
+          )
+        );
+
+        const response = await contract.stake(
+          nftContract,
+          availableHog[0],
+          stakedurStamp.getTime()
+        );
 
         const receipt = await response.wait();
 

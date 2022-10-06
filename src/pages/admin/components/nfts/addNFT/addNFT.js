@@ -11,9 +11,11 @@ const AddNFT = () => {
   const dispatch = useDispatch();
   const [addedNFT, setAddedNFT] = useState(false);
   const [updateNFT, setUpdateNFT] = useState(false);
+  const [updateStaking, setUpdateStaking] = useState(false);
   const [loading, setLoading] = useState({
     addNFTLoading: false,
     updateNFTLoading: false,
+    updateContractLoading: false,
   });
 
   const authState = useSelector((state) => state.auth);
@@ -31,7 +33,9 @@ const AddNFT = () => {
       setUpdateNFT,
       setLoading,
       authState.loggedIn,
-      dispatch
+      dispatch,
+      updateStaking,
+      setUpdateStaking
     );
   };
 
@@ -67,7 +71,11 @@ const AddNFT = () => {
           </label>
           <label>
             Percentage
-            <input name="percentage" type="tel" placeholder="6" required />
+            <input name="percentage" type="tel" placeholder="7" required />
+          </label>
+          <label>
+            Stake Duration (Months)
+            <input name="duration" type="tel" placeholder="6" required />
           </label>
 
           <button
@@ -81,6 +89,21 @@ const AddNFT = () => {
             className={styles.formButton}
           >
             {loading.updateNFTLoading ? <Loader /> : "Update NFT Contract"}
+          </button>
+          <button
+            disabled={
+              loading.updateContractLoading ||
+              !addedNFT ||
+              !updateNFT ||
+              updateStaking
+            }
+            className={styles.formButton}
+          >
+            {loading.updateContractLoading ? (
+              <Loader />
+            ) : (
+              "Update Staking Contract"
+            )}
           </button>
         </form>
       </div>

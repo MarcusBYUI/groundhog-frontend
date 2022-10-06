@@ -7,7 +7,12 @@ import { notificationActions } from "../../../../../store/notification/notificat
 import { ethers } from "ethers";
 import { config } from "../../../../../config";
 
-const { nftContract: mintContract, nftABI: abi } = config;
+const {
+  nftContract: mintContract,
+  nftABI: abi,
+  stakeContract,
+  stakeABI,
+} = config;
 
 export const handleSubmission = async (
   e,
@@ -17,7 +22,9 @@ export const handleSubmission = async (
   setUpdateNFT,
   setLoading,
   auth,
-  dispatch
+  dispatch,
+  updateStaking,
+  setUpdateStaking
 ) => {
   e.preventDefault();
   const form = new FormData(e.target);
@@ -57,8 +64,6 @@ export const handleSubmission = async (
     const percentage = form.get("percentage");
 
     if (window.ethereum) {
-      setLoading(true);
-
       setLoading((prevstate) => {
         let state = { ...prevstate };
         state.updateNFTLoading = true;
@@ -89,6 +94,48 @@ export const handleSubmission = async (
         setLoading((prevstate) => {
           let state = { ...prevstate };
           state.updateNFTLoading = false;
+          return state;
+        });
+        dispatch(notificationActions.setMessage(error.message));
+      }
+    }
+  } else if (addedNFT && updateNFT && !updateStaking) {
+    const nftId = getFromLocalStorage("nftId");
+    const duration = form.get("duration");
+
+    if (window.ethereum) {
+      setLoading((prevstate) => {
+        let state = { ...prevstate };
+        state.updateContractLoading = true;
+        return state;
+      });
+
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(stakeContract, stakeABI, signer);
+
+      try {
+        const response = await contract.addNFT(nftId, duration);
+        await response.wait();
+
+        //send address to api to confirm, set timeout
+        dispatch(
+          notificationActions.setMessage(
+            "Added to Staking Contract Successfully"
+          )
+        );
+
+        setUpdateStaking(true);
+
+        setLoading((prevstate) => {
+          let state = { ...prevstate };
+          state.updateContractLoading = false;
+          return state;
+        });
+      } catch (error) {
+        setLoading((prevstate) => {
+          let state = { ...prevstate };
+          state.updateContractLoading = false;
           return state;
         });
         dispatch(notificationActions.setMessage(error.message));

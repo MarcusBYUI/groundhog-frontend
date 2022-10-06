@@ -22,27 +22,16 @@ const StakedTable = () => {
       const result = [];
       data.forEach((item, index) => {
         const newItem = { ...item };
-        const stakedDate = new Date(item.date);
         const today = new Date();
-        let monthLastDay;
 
-        if (stakedDate.getMonth() === today.getMonth()) {
-          monthLastDay = new Date(
-            stakedDate.getFullYear(),
-            stakedDate.getMonth() + 2,
-            1
-          );
-        } else {
-          monthLastDay = new Date(today.getFullYear(), today.getMonth() + 1, 1);
-        }
-        const date = new Date();
-
+        const monthLastDay = new Date(
+          today.getFullYear(),
+          today.getMonth() + 1,
+          0
+        );
         newItem["next"] = monthLastDay.getTime();
 
-        const sixMonthDate = new Date(date.setMonth(stakedDate.getMonth() + 5));
-        const unstakeDate = new Date(date.setDate(sixMonthDate.getDate() + 1));
-
-        newItem["unlock"] = unstakeDate.getTime();
+        newItem["unlock"] = item.stakeEnd;
 
         result.push(newItem);
 
