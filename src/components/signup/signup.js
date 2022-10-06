@@ -66,7 +66,7 @@ const Signup = () => {
       <OverLay closeHandler={handleBackdropCLick} />
       <div className={styles.loginPop}>
         <i onClick={handleBackdropCLick} className="fa-solid fa-xmark"></i>
-        <h2>GroundHog SignUp</h2>
+        <h2>Gopher Mines SignUp</h2>
         <p>
           Create an account to gain minting and <br /> staking access
         </p>

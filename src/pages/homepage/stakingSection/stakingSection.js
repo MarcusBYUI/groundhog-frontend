@@ -12,7 +12,7 @@ const StakingSection = () => {
         <div className={styles.stakingSectionGrid}>
           <div className={styles.stakingText}>
             <div className={styles.mintHeaderGrid}>
-              <p>GroundHog </p>
+              <p>Gopher Mines </p>
               <p>STAKING</p>
             </div>
             <p>

@@ -105,6 +105,14 @@ const MintCard = ({ data }) => {
           <p>Cost:</p>
           <span>{data.cost} USDC</span>
         </div>
+        <div>
+          <p>Stake:</p>
+          <span>{data.duration} Months</span>
+        </div>
+        <div>
+          <p>APR:</p>
+          <span>{data.percentage * 12}%</span>
+        </div>
         <button
           onClick={() => {
             approve ? HandleMint() : handleApproval();

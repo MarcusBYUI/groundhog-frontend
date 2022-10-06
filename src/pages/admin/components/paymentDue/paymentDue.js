@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AppPagination from "../../../../components/pagination/pagination";
@@ -29,6 +30,31 @@ const PaymentDue = () => {
     } else {
       dispatch(notificationActions.setMessage("An error occured"));
     }
+  };
+
+  const handlePullCSV = async (e) => {
+    const response = await axios({
+      method: "get",
+      url: "https://api.gophermines.com/user/pending",
+      headers: {
+        Authorization: `Bearer ${authState.loggedIn.token}`,
+      },
+      responseType: "blob",
+    });
+
+    const blob = response.data;
+
+    // 2. Create blob link to download
+    const url = window.URL.createObjectURL(new Blob([blob]));
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", `payments.csv`);
+    // 3. Append to html page
+    document.body.appendChild(link);
+    // 4. Force download
+    link.click();
+    // 5. Clean up and remove the link
+    link.parentNode.removeChild(link);
   };
 
   useEffect(() => {
@@ -76,7 +102,11 @@ const PaymentDue = () => {
               </div>
             );
           })}
+        <button onClick={handlePullCSV} className={styles.paymentsButton}>
+          Get Pending CSV
+        </button>
       </div>
+
       <div className={styles.paginationContainer}>
         <AppPagination callback={setUserData} rawData={fetchedData} />
       </div>

@@ -5,7 +5,7 @@ export const providerOptions = {
   walletlink: {
     package: CoinbaseWalletSDK, // Required
     options: {
-      appName: "GroundHog Mining", // Required
+      appName: "Gopher Mines", // Required
       infuraId: process.env.INFURA_KEY, // Required unless you provide a JSON RPC url; see `rpc` below
     },
   },

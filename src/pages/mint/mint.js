@@ -11,22 +11,6 @@ import { apiRequest } from "../../helpers/connections";
 
 const Mint = () => {
   const [NFTs, setNFTs] = useState([]);
-  // const NFTs = [
-  //   {
-  //     id: 1,
-  //     name: "Terra Hog",
-  //     cost: 0.02,
-  //     symbol: "terra",
-  //     image: "/art/barrel.gif",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Shy Hog",
-  //     cost: 0.03,
-  //     symbol: "shy",
-  //     image: "/art/logo.gif",
-  //   },
-  // ];
 
   const getNFTs = async () => {
     const result = await apiRequest("collection");

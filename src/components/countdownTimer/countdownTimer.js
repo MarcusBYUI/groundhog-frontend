@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { notificationActions } from "../../store/notification/notification";
 
 import styles from "./countdownTimer.module.css";
 
 const CountdownTimer = ({ time }) => {
+  const dispatch = useDispatch();
   const [[days, hours, minutes, seconds], setTimer] = useState([0, 0, 0, 0]);
 
   function calcDayTime(distance) {
@@ -20,6 +23,9 @@ const CountdownTimer = ({ time }) => {
   const handleTimer = () => {
     const curTime = new Date().getTime();
     setTimer(calcDayTime(time - curTime));
+    if (time < curTime) {
+      dispatch(notificationActions.setContractAction());
+    }
   };
 
   useEffect(() => {

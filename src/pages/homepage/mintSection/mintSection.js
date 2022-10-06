@@ -12,7 +12,7 @@ const MintSection = () => {
           <div className={styles.wheelingImage}></div>
           <div className={styles.mintSectionText}>
             <div className={styles.mintHeaderGrid}>
-              <p>GroundHog </p>
+              <p>Gopher Mines </p>
               <p>NFT</p>
             </div>
             <p>
