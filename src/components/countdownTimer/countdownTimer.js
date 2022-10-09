@@ -4,7 +4,7 @@ import { notificationActions } from "../../store/notification/notification";
 
 import styles from "./countdownTimer.module.css";
 
-const CountdownTimer = ({ time }) => {
+const CountdownTimer = ({ time, payment }) => {
   const dispatch = useDispatch();
   const [[days, hours, minutes, seconds], setTimer] = useState([0, 0, 0, 0]);
 
@@ -22,9 +22,11 @@ const CountdownTimer = ({ time }) => {
 
   const handleTimer = () => {
     const curTime = new Date().getTime();
-    setTimer(calcDayTime(time - curTime));
     if (time < curTime) {
-      dispatch(notificationActions.setContractAction());
+      setTimer(calcDayTime(0));
+      payment && dispatch(notificationActions.setContractAction());
+    } else {
+      setTimer(calcDayTime(time - curTime));
     }
   };
 
@@ -39,15 +41,23 @@ const CountdownTimer = ({ time }) => {
   });
 
   return (
-    <div className={styles.countdown}>
-      <span>{days}d</span>
-      <span>:</span>
-      <span>{hours}h</span>
-      <span>:</span>
-      <span>{minutes}m</span>
-      <span>:</span>
-      <span>{seconds}s</span>
-    </div>
+    <>
+      {days === 0 && hours === 0 && minutes === 0 && seconds === 0 ? (
+        <div className={styles.countdown}>
+          <span>Ready</span>
+        </div>
+      ) : (
+        <div className={styles.countdown}>
+          <span>{days}d</span>
+          <span>:</span>
+          <span>{hours}h</span>
+          <span>:</span>
+          <span>{minutes}m</span>
+          <span>:</span>
+          <span>{seconds}s</span>
+        </div>
+      )}
+    </>
   );
 };
 

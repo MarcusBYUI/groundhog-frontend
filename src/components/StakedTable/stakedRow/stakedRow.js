@@ -57,8 +57,8 @@ const StakedRow = ({ data }) => {
             <div key={item._id}>
               <div className={styles.stakedRow}>
                 <span>{date}</span>
-                <CountdownTimer time={item.next} />
-                <CountdownTimer time={item.unlock} />
+                <CountdownTimer time={item.next} payment={true} />
+                <CountdownTimer time={item.unlock} payment={false} />
                 <button
                   onClick={() =>
                     handleUnStake(
