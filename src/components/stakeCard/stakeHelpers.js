@@ -105,7 +105,7 @@ export const handleGroundHogStakedBalance = async (address, setStakedHog) => {
   }
 };
 
-export const checkApproved = async (address, setApproved) => {
+export const checkApproved = async (address, setApproved, setNotReady) => {
   if (window.ethereum) {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
@@ -115,6 +115,7 @@ export const checkApproved = async (address, setApproved) => {
       //debugger;
       const response = await contract.isApprovedForAll(address, stakeContract);
       response ? setApproved(true) : setApproved(false);
+      setNotReady(false);
     } catch (error) {
       console.log("error", error);
     }
