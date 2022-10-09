@@ -187,7 +187,8 @@ export const userData = async (auth, setUser) => {
 export const handleStakingApproval = async (
   dispatch,
   setLoading,
-  setApproved
+  setApproved,
+  availableHog
 ) => {
   if (window.ethereum) {
     setLoading(true);
@@ -198,13 +199,18 @@ export const handleStakingApproval = async (
 
     try {
       //debugger;
-      const response = await contract.setApprovalForAll(stakeContract, true);
-      await response.wait();
+      if (availableHog.length > 0) {
+        const response = await contract.setApprovalForAll(stakeContract, true);
+        await response.wait();
 
-      setApproved(true);
+        setApproved(true);
 
-      setLoading(false);
-      dispatch(notificationActions.setMessage("Approval Completed"));
+        setLoading(false);
+        dispatch(notificationActions.setMessage("Approval Completed"));
+      } else {
+        setLoading(false);
+        dispatch(notificationActions.setMessage("You currently have no NFT"));
+      }
     } catch (error) {
       setLoading(false);
       dispatch(notificationActions.setMessage(error.message));
