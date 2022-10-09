@@ -199,18 +199,13 @@ export const handleStakingApproval = async (
 
     try {
       //debugger;
-      if (availableHog.length > 0) {
-        const response = await contract.setApprovalForAll(stakeContract, true);
-        await response.wait();
+      const response = await contract.setApprovalForAll(stakeContract, true);
+      await response.wait();
 
-        setApproved(true);
+      setApproved(true);
 
-        setLoading(false);
-        dispatch(notificationActions.setMessage("Approval Completed"));
-      } else {
-        setLoading(false);
-        dispatch(notificationActions.setMessage("You currently have no NFT"));
-      }
+      setLoading(false);
+      dispatch(notificationActions.setMessage("Approval Completed"));
     } catch (error) {
       setLoading(false);
       dispatch(notificationActions.setMessage(error.message));
