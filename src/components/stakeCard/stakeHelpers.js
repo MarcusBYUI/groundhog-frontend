@@ -187,8 +187,7 @@ export const userData = async (auth, setUser) => {
 export const handleStakingApproval = async (
   dispatch,
   setLoading,
-  setApproved,
-  availableHog
+  setApproved
 ) => {
   if (window.ethereum) {
     setLoading(true);
