@@ -29,6 +29,9 @@ export const handleStake = async (
         const nftResponse = await NFTcontract.tokenIdToNFTId(availableHog[0]);
         //get stake duration
         const stakeDuration = await contract.nftIdToDUration(nftResponse);
+        //get NFTName
+        const nftName = await NFTcontract.tokenIdToNFTName(availableHog[0]);
+
         //calculate duration from now
         const today = new Date();
         const date = new Date();
@@ -52,7 +55,7 @@ export const handleStake = async (
 
         const data = await apiRequest(
           "stake",
-          { address, stakeId },
+          { address, stakeId, nftName },
           "post",
           auth
         );
