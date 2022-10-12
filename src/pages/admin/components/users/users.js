@@ -6,6 +6,7 @@ import { notificationActions } from "../../../../store/notification/notification
 import styles from "./users.module.css";
 import { apiRequest } from "../../../../helpers/connections";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 const Users = () => {
   const authState = useSelector((state) => state.auth);
@@ -29,6 +30,31 @@ const Users = () => {
     } else {
       dispatch(notificationActions.setMessage("An error occured"));
     }
+  };
+
+  const handlePullCSV = async (e) => {
+    const response = await axios({
+      method: "get",
+      url: "https://api.gophermines.com/user/allusers",
+      headers: {
+        Authorization: `Bearer ${authState.loggedIn.token}`,
+      },
+      responseType: "blob",
+    });
+
+    const blob = response.data;
+
+    // 2. Create blob link to download
+    const url = window.URL.createObjectURL(new Blob([blob]));
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", `payments.csv`);
+    // 3. Append to html page
+    document.body.appendChild(link);
+    // 4. Force download
+    link.click();
+    // 5. Clean up and remove the link
+    link.parentNode.removeChild(link);
   };
 
   useEffect(() => {
@@ -82,6 +108,9 @@ const Users = () => {
               </div>
             );
           })}
+        <button onClick={handlePullCSV} className={styles.paymentsButton}>
+          Get Users CSV
+        </button>
       </div>
       <div className={styles.paginationContainer}>
         <AppPagination callback={setUserData} rawData={fetchedData} />

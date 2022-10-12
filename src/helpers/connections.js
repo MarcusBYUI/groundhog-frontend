@@ -1,6 +1,6 @@
 import axios from "axios";
-const BASEURL = "https://api.gophermines.com/";
-//const BASEURL = "http://localhost:3001/";
+//const BASEURL = "https://api.gophermines.com/";
+const BASEURL = "http://localhost:3001/";
 
 export async function apiRequest(
   path,
