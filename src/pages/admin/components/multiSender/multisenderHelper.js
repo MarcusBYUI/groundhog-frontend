@@ -27,7 +27,7 @@ export const handleMultisending = async (dispatch, data, setLoading) => {
             currentDetails.forEach((item, index) => {
               const itemArr = item.split(":");
               receiverArr.push(itemArr[0].trim());
-              amountArr.push(Number(itemArr[1].trim()));
+              amountArr.push(Number(itemArr[1].trim()) * 10 ** 18);
 
               if (
                 receiverArr.length === index + 1 &&
