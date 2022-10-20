@@ -24,17 +24,17 @@ const StakedTable = () => {
         const newItem = { ...item };
         const today = new Date(item.lastPayment);
 
-        // const monthLastDay = new Date(
-        //   today.getFullYear(),
-        //   today.getMonth() + 1,
-        //   0
-        // );
         const monthLastDay = new Date(
           today.getFullYear(),
-          today.getMonth(),
-          today.getDate(),
-          today.getHours() + 1
+          today.getMonth() + 1,
+          0
         );
+        // const monthLastDay = new Date(
+        //   today.getFullYear(),
+        //   today.getMonth(),
+        //   today.getDate(),
+        //   today.getHours() + 1
+        // );
         newItem["next"] = monthLastDay.getTime();
 
         newItem["unlock"] = item.stakeEnd;

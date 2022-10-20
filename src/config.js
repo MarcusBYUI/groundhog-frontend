@@ -1,7 +1,7 @@
 export const config = {
-  nftContract: "0xB972D8f16C6e3152f12D424880B9737de0151193",
-  stakeContract: "0x8B452E8ba5Fe05F0dfabEd8Ce795aC3E601CC804",
-  USDCContract: "0xc8D92202245f08885ac08d412DC78a19E2f5Fd8C",
+  nftContract: "0xE4090b1dfDE844a0F6020658e761AfFD1f59A797",
+  stakeContract: "0x80425d9297A7dF853C3754C6cCC48128726E2c26",
+  USDCContract: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
   nftABI: [
     {
       inputs: [
@@ -603,19 +603,6 @@ export const config = {
       type: "function",
     },
     {
-      inputs: [
-        {
-          internalType: "address[]",
-          name: "addressList",
-          type: "address[]",
-        },
-      ],
-      name: "removeWhiteList",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
       inputs: [],
       name: "renounceOwnership",
       outputs: [],
@@ -768,19 +755,6 @@ export const config = {
         },
       ],
       name: "setApprovalForAll",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "string",
-          name: "newBaseURI",
-          type: "string",
-        },
-      ],
-      name: "setBaseURI",
       outputs: [],
       stateMutability: "nonpayable",
       type: "function",
@@ -1084,19 +1058,6 @@ export const config = {
         },
       ],
       name: "updateRouter",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address[]",
-          name: "addressList",
-          type: "address[]",
-        },
-      ],
-      name: "whiteList",
       outputs: [],
       stateMutability: "nonpayable",
       type: "function",
@@ -1969,7 +1930,7 @@ export const config = {
               type: "uint256",
             },
           ],
-          internalType: "struct GroundHogStaking.StakedNFT[]",
+          internalType: "struct GopherMinesStaking.StakedNFT[]",
           name: "",
           type: "tuple[]",
         },
