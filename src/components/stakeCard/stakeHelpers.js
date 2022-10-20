@@ -135,7 +135,6 @@ export const handleUSDCbalance = async (address, setUSDCBalance) => {
       //debugger;
       const response = await contract.balanceOf(address);
       const balance = BigNumber.from(`${response._hex}`).toString();
-      console.log(balance / 10 ** 18);
       setUSDCBalance(balance / 10 ** 18);
     } catch (error) {
       console.log("error", error);
