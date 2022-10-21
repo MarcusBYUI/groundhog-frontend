@@ -29,6 +29,9 @@ export const handleStake = async (
         const nftResponse = await NFTcontract.tokenIdToNFTId(availableHog[0]);
         //get stake duration
         const stakeDuration = await contract.nftIdToDUration(nftResponse);
+        //get NFTName
+        const nftName = await NFTcontract.tokenIdToNFTName(availableHog[0]);
+
         //calculate duration from now
         const today = new Date();
         const date = new Date();
@@ -36,7 +39,7 @@ export const handleStake = async (
         const stakedurStamp = new Date(
           date.setMonth(
             today.getMonth() +
-              (BigNumber.from(`${stakeDuration._hex}`).toString() - 1)
+              BigNumber.from(`${stakeDuration._hex}`).toNumber()
           )
         );
 
@@ -52,7 +55,7 @@ export const handleStake = async (
 
         const data = await apiRequest(
           "stake",
-          { address, stakeId },
+          { address, stakeId, nftName },
           "post",
           auth
         );
@@ -105,7 +108,7 @@ export const handleGroundHogStakedBalance = async (address, setStakedHog) => {
   }
 };
 
-export const checkApproved = async (address, setApproved) => {
+export const checkApproved = async (address, setApproved, setNotReady) => {
   if (window.ethereum) {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
@@ -115,6 +118,7 @@ export const checkApproved = async (address, setApproved) => {
       //debugger;
       const response = await contract.isApprovedForAll(address, stakeContract);
       response ? setApproved(true) : setApproved(false);
+      setNotReady(false);
     } catch (error) {
       console.log("error", error);
     }

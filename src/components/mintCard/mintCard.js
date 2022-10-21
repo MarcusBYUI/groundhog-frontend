@@ -18,6 +18,7 @@ const MintCard = ({ data }) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [approve, setApprove] = useState(false);
+  const [notReady, setNotReady] = useState(true);
 
   const { connected, address } = useSelector(
     (state) => state.connection.connectionState
@@ -34,6 +35,7 @@ const MintCard = ({ data }) => {
         const response = await contract.allowance(address, mintContract);
         const allowance = BigNumber.from(`${response._hex}`).toString();
         allowance >= 100000 * 10 ** 18 ? setApprove(true) : setApprove(false);
+        setNotReady(false);
       } catch (error) {
         console.log("error", error);
       }
@@ -117,7 +119,7 @@ const MintCard = ({ data }) => {
           onClick={() => {
             approve ? HandleMint() : handleApproval();
           }}
-          disabled={loading}
+          disabled={notReady || loading}
         >
           {loading ? (
             <Loader />

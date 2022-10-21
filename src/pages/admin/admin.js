@@ -14,6 +14,7 @@ import PaymentsHistory from "./components/paymentsHistory/paymentsHistory";
 import Nfts from "./components/nfts/nfts";
 import { authSliceActions } from "../../store/auth/auth";
 import AddNFT from "./components/nfts/addNFT/addNFT";
+import ReturnedNFTs from "./components/returnNFT/returnNFT";
 
 const Admin = () => {
   const authState = useSelector((state) => state.auth);
@@ -53,6 +54,13 @@ const Admin = () => {
 
           <Card>
             <PaymentDue />
+          </Card>
+        </section>
+        <section className={styles.duePaymentSection}>
+          <h3>Returned NFTs</h3>
+
+          <Card>
+            <ReturnedNFTs />
           </Card>
         </section>
         <section className={styles.senderSection}>

@@ -29,6 +29,7 @@ const StakeCard = () => {
   const [stakedHog, setStakedHog] = useState(0);
   const [USDCBalance, setUSDCBalance] = useState(0);
   const [user, setUser] = useState({});
+  const [notReady, setNotReady] = useState(true);
 
   const { connected, address } = useSelector(
     (state) => state.connection.connectionState
@@ -48,7 +49,7 @@ const StakeCard = () => {
   ];
 
   useEffect(() => {
-    checkApproved(address, setApproved);
+    checkApproved(address, setApproved, setNotReady);
     handleGroundHogBalance(address, setAvailableHog);
     handleGroundHogStakedBalance(address, setStakedHog);
     handleUSDCbalance(address, setUSDCBalance);
@@ -65,7 +66,7 @@ const StakeCard = () => {
         </div>
       </Card>
       <button
-        disabled={loading}
+        disabled={notReady || loading}
         onClick={
           !approved
             ? () => {

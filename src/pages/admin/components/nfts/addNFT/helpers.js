@@ -62,6 +62,7 @@ export const handleSubmission = async (
     const fee = form.get("cost");
     const uri = form.get("image");
     const percentage = form.get("percentage");
+    const name = form.get("nftName");
 
     if (window.ethereum) {
       setLoading((prevstate) => {
@@ -75,7 +76,13 @@ export const handleSubmission = async (
       const contract = new ethers.Contract(mintContract, abi, signer);
 
       try {
-        const response = await contract.addNFT(fee, nftId, uri, percentage);
+        const response = await contract.addNFT(
+          fee,
+          nftId,
+          uri,
+          percentage,
+          name
+        );
         await response.wait();
 
         //send address to api to confirm, set timeout
